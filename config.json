@@ -1,0 +1,94 @@
+{
+  "locations": [
+    "pune",
+    "hyderabad",
+    "bengaluru",
+    "bangalore",
+    "mumbai",
+    "navi mumbai"
+  ],
+  "include_title_regex": "(software (development )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b)",
+  "exclude_title_regex": "(intern|graduate|new grad|junior|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|principal|distinguished|director|manager|architect|\\bvp\\b|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst|\\bsenior\\b|\\bsr\\b)",
+  "companies": [
+    {
+      "name": "Rubrik",
+      "ats": "greenhouse",
+      "slug": "rubrik"
+    },
+    {
+      "name": "Zscaler",
+      "ats": "greenhouse",
+      "slug": "zscaler"
+    },
+    {
+      "name": "Cloudflare",
+      "ats": "greenhouse",
+      "slug": "cloudflare"
+    },
+    {
+      "name": "Databricks",
+      "ats": "greenhouse",
+      "slug": "databricks"
+    },
+    {
+      "name": "MongoDB",
+      "ats": "greenhouse",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Okta",
+      "ats": "greenhouse",
+      "slug": "okta"
+    },
+    {
+      "name": "Elastic",
+      "ats": "greenhouse",
+      "slug": "elastic"
+    },
+    {
+      "name": "Twilio",
+      "ats": "greenhouse",
+      "slug": "twilio"
+    },
+    {
+      "name": "Adobe",
+      "ats": "workday",
+      "host": "adobe.wd5.myworkdayjobs.com",
+      "tenant": "adobe",
+      "site": "external_experienced",
+      "search": "software engineer"
+    },
+    {
+      "name": "Salesforce",
+      "ats": "workday",
+      "host": "salesforce.wd12.myworkdayjobs.com",
+      "tenant": "salesforce",
+      "site": "External_Career_Site",
+      "search": "software engineer"
+    },
+    {
+      "name": "Mastercard",
+      "ats": "workday",
+      "host": "mastercard.wd1.myworkdayjobs.com",
+      "tenant": "mastercard",
+      "site": "CorporateCareers",
+      "search": "software engineer"
+    },
+    {
+      "name": "Nutanix",
+      "ats": "workday",
+      "host": "nutanix.wd1.myworkdayjobs.com",
+      "tenant": "nutanix",
+      "site": "Nutanix",
+      "search": "software engineer"
+    },
+    {
+      "name": "Autodesk",
+      "ats": "workday",
+      "host": "autodesk.wd1.myworkdayjobs.com",
+      "tenant": "autodesk",
+      "site": "Ext",
+      "search": "software engineer"
+    }
+  ]
+}
