@@ -89,22 +89,35 @@ def fetch_ashby(c):
     return out
 
 
+WD_CITIES = ["Pune", "Hyderabad", "Bengaluru", "Mumbai"]
+
+
 def fetch_workday(c):
+    """Workday search returns results by relevance and we only page through the first N, so big
+    companies hide India roles. We therefore also search '<query> <city>' for each target city."""
     host, tenant, site = c["host"], c["tenant"], c["site"]
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
-    out, offset, limit = [], 0, 20
-    while offset < c.get("max_results", 100):
-        d = http_json(api, {"appliedFacets": {}, "limit": limit, "offset": offset,
-                            "searchText": c.get("search", "software engineer")})
-        posts = d.get("jobPostings", [])
-        if not posts:
-            break
-        for j in posts:
-            path = j.get("externalPath", "")
-            out.append({"id": path, "title": j.get("title", ""),
-                        "location": j.get("locationsText", "") or "",
-                        "url": f"https://{host}/en-US/{site}{path}"})
-        offset += limit
+    base = c.get("search", "software engineer")
+    searches = c.get("searches") or [base] + [f"{base} {city}" for city in WD_CITIES]
+    out, seen_ids, limit = [], set(), 20
+    for q in searches:
+        offset = 0
+        while offset < c.get("max_results", 80):
+            d = http_json(api, {"appliedFacets": {}, "limit": limit, "offset": offset, "searchText": q})
+            posts = d.get("jobPostings", [])
+            if not posts:
+                break
+            for j in posts:
+                path = j.get("externalPath", "")
+                if path in seen_ids:
+                    continue
+                seen_ids.add(path)
+                out.append({"id": path, "title": j.get("title", ""),
+                            "location": j.get("locationsText", "") or "",
+                            "url": f"https://{host}/en-US/{site}{path}"})
+            offset += limit
+            if len(posts) < limit:
+                break
     return out
 
 
