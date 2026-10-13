@@ -1,14 +1,41 @@
 {
-  "locations": [
-    "pune",
+  "my_years": 3.3,
+  "stretch_years": 2,
+  "preferred_locations": [
+    "pune"
+  ],
+  "acceptable_locations": [
     "hyderabad",
     "bengaluru",
     "bangalore",
     "mumbai",
-    "navi mumbai"
+    "navi mumbai",
+    "thane"
+  ],
+  "allow_generic_india": true,
+  "other_india_cities": [
+    "chennai",
+    "delhi",
+    "gurgaon",
+    "gurugram",
+    "noida",
+    "kolkata",
+    "ahmedabad",
+    "kochi",
+    "coimbatore",
+    "jaipur",
+    "chandigarh",
+    "indore",
+    "thiruvananthapuram",
+    "trivandrum",
+    "nagpur",
+    "lucknow",
+    "bhubaneswar",
+    "mohali"
   ],
   "include_title_regex": "(software (development )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b)",
-  "exclude_title_regex": "(intern|graduate|new grad|junior|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|principal|distinguished|director|manager|architect|\\bvp\\b|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst|\\bsenior\\b|\\bsr\\b)",
+  "exclude_title_regex": "(intern|graduate|new grad|junior|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|principal|distinguished|director|manager|architect|\\bvp\\b|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst)",
+  "senior_title_regex": "(\\bsenior\\b|\\bsr\\b)",
   "companies": [
     {
       "name": "Rubrik",
