@@ -108,39 +108,8 @@ def fetch_workday(c):
     return out
 
 
-def fetch_amazon(c):
-    """Amazon's public jobs search JSON (the same one amazon.jobs uses). Unofficial: may change."""
-    import urllib.parse
-    seen_ids, out = set(), []
-    for city in c.get("cities", ["Pune", "Hyderabad", "Bangalore", "Mumbai"]):
-        for q in c.get("queries", ["software development engineer"]):
-            offset = 0
-            while offset < c.get("max_results", 200):
-                url = ("https://www.amazon.jobs/en/search.json?base_query=" + urllib.parse.quote_plus(q)
-                       + "&loc_query=" + urllib.parse.quote_plus(city)
-                       + "&country=IND&result_limit=100&sort=recent&offset=" + str(offset))
-                d = http_json(url)
-                jobs = d.get("jobs", [])
-                if not jobs:
-                    break
-                for j in jobs:
-                    jid = str(j.get("id_icims") or j.get("id"))
-                    if jid in seen_ids:
-                        continue
-                    seen_ids.add(jid)
-                    desc = strip_html((j.get("description") or "") + "\n" + (j.get("basic_qualifications") or ""))
-                    out.append({"id": jid, "title": j.get("title", ""),
-                                "location": j.get("location") or j.get("normalized_location") or "",
-                                "url": "https://www.amazon.jobs" + (j.get("job_path") or ""),
-                                "desc": desc})
-                offset += 100
-                if len(jobs) < 100:
-                    break
-    return out
-
-
 FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever,
-            "ashby": fetch_ashby, "workday": fetch_workday, "amazon": fetch_amazon}
+            "ashby": fetch_ashby, "workday": fetch_workday}
 
 
 # ---------- Detail fetch (only for NEW, title/location-matched jobs) ----------
