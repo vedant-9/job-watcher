@@ -33,7 +33,7 @@
     "bhubaneswar",
     "mohali"
   ],
-  "include_title_regex": "(software (development )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b)",
+  "include_title_regex": "(software (development |dev )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b)",
   "exclude_title_regex": "(intern|graduate|new grad|junior|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|principal|distinguished|director|manager|architect|\\bvp\\b|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst)",
   "senior_title_regex": "(\\bsenior\\b|\\bsr\\b)",
   "companies": [
@@ -116,6 +116,75 @@
       "tenant": "autodesk",
       "site": "Ext",
       "search": "software engineer"
+    },
+    {
+      "name": "NVIDIA",
+      "ats": "workday",
+      "host": "nvidia.wd5.myworkdayjobs.com",
+      "tenant": "nvidia",
+      "site": "NVIDIAExternalCareerSite",
+      "search": "software engineer"
+    },
+    {
+      "name": "Broadcom (VMware)",
+      "ats": "workday",
+      "host": "broadcom.wd1.myworkdayjobs.com",
+      "tenant": "broadcom",
+      "site": "External_Career",
+      "search": "software engineer"
+    },
+    {
+      "name": "Red Hat",
+      "ats": "workday",
+      "host": "redhat.wd5.myworkdayjobs.com",
+      "tenant": "redhat",
+      "site": "Jobs",
+      "search": "software engineer"
+    },
+    {
+      "name": "Qualcomm",
+      "ats": "workday",
+      "host": "qualcomm.wd12.myworkdayjobs.com",
+      "tenant": "qualcomm",
+      "site": "External",
+      "search": "software engineer"
+    },
+    {
+      "name": "Intel",
+      "ats": "workday",
+      "host": "intel.wd1.myworkdayjobs.com",
+      "tenant": "intel",
+      "site": "External",
+      "search": "software engineer"
+    },
+    {
+      "name": "AMD",
+      "ats": "workday",
+      "host": "amd.wd1.myworkdayjobs.com",
+      "tenant": "amd",
+      "site": "AMD",
+      "search": "software engineer"
+    },
+    {
+      "name": "Fiserv",
+      "ats": "workday",
+      "host": "fiserv.wd5.myworkdayjobs.com",
+      "tenant": "fiserv",
+      "site": "EXT",
+      "search": "software engineer"
+    },
+    {
+      "name": "FIS",
+      "ats": "workday",
+      "host": "fis.wd5.myworkdayjobs.com",
+      "tenant": "fis",
+      "site": "SearchJobs",
+      "search": "software engineer"
+    },
+    {
+      "name": "Druva",
+      "ats": "greenhouse",
+      "slug": "druva"
     }
   ]
 }
