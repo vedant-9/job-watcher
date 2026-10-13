@@ -1,0 +1,29 @@
+name: job-watcher
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run watcher
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python watcher.py
+      - name: Save seen jobs
+        run: |
+          git config user.name "job-watcher"
+          git config user.email "job-watcher@users.noreply.github.com"
+          git add seen.json
+          git diff --cached --quiet || (git commit -m "update seen jobs" && git push)
