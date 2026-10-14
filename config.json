@@ -1,6 +1,8 @@
 {
   "my_years": 3.3,
-  "stretch_years": 2,
+  "fit_slack": 0.5,
+  "stretch_years": 0,
+  "min_required_years": 2,
   "preferred_locations": [
     "pune"
   ],
@@ -34,8 +36,9 @@
     "mohali"
   ],
   "include_title_regex": "(software (development |dev )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b)",
-  "exclude_title_regex": "(intern|graduate|new grad|junior|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|principal|distinguished|director|manager|architect|\\bvp\\b|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst)",
+  "exclude_title_regex": "(intern|trainee|apprentice|co-?op|graduate|new grad|fresher|entry[- ]level|early career|campus|university|junior|associate software|associate engineer|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|\\blead\\b|\\blmts\\b|\\bpmts\\b|tech lead|principal|distinguished|director|manager|architect|\\bvp\\b|vice president|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|sales|security analyst)",
   "senior_title_regex": "(\\bsenior\\b|\\bsr\\b)",
+  "fresher_desc_regex": "(freshers?|entry[- ]level|new grad|recent graduates?|early[- ]career|campus hire|0\\s*-\\s*1\\s*years?|no (prior )?experience (is )?(required|needed))",
   "companies": [
     {
       "name": "Rubrik",
