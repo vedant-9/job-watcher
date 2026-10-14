@@ -207,11 +207,11 @@ def experience_verdict(req, cfg):
         return "unknown", "not stated"
     lo, hi = req
     txt = f"{lo:g}-{hi:g} yrs" if hi is not None else f"{lo:g}+ yrs"
-    if hi is not None and hi < me - 1:
+    if lo < cfg.get("min_required_years", 2) or (hi is not None and hi < me - 0.5):
         return "too_junior", txt
-    if lo <= me + 0.5:
+    if lo <= me + cfg.get("fit_slack", 0.5):
         return "fit", txt
-    if lo <= me + cfg.get("stretch_years", 2):
+    if lo <= me + cfg.get("stretch_years", 0):
         return "stretch", txt
     return "too_senior", txt
 
@@ -339,6 +339,8 @@ def evaluate(job, cfg):
         return False, f"experience {txt}"
     if label == "unknown" and re.search(cfg.get("senior_title_regex", r"$^"), job["title"].lower()):
         return False, "senior title and experience not stated"
+    if label == "unknown" and re.search(cfg.get("fresher_desc_regex", r"$^"), (desc or "").lower()):
+        return False, "looks like a fresher / entry-level role"
     return True, ""
 
 
