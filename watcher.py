@@ -29,7 +29,7 @@ HERE = Path(__file__).parent
 CONFIG_PATH = HERE / "config.json"
 STATE_PATH = HERE / "seen.json"
 UA = "Mozilla/5.0 (job-watcher personal script)"
-MAX_FIRST_RUN = 60
+MAX_FIRST_RUN = 100
 MULTI_LOC = re.compile(r"\b\d+\s+locations?\b", re.I)
 
 
@@ -351,6 +351,7 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--exp", help="test the experience parser on a text snippet")
+    ap.add_argument("--only", help="list ALL current matching jobs for one company (ignores seen.json, saves nothing)")
     args = ap.parse_args()
     cfg = json.loads(CONFIG_PATH.read_text())
 
@@ -361,6 +362,26 @@ def main():
     if args.check:
         _, errors = collect(cfg)
         print(f"\n{len(cfg['companies']) - len(errors)} OK, {len(errors)} failing")
+        return
+
+    if args.only:
+        cfg["companies"] = [c for c in cfg["companies"] if c["name"].lower() == args.only.lower()]
+        if not cfg["companies"]:
+            sys.exit(f"No company named {args.only!r} in config.json")
+        results, errors = collect(cfg)
+        keep = []
+        for j in results:
+            ok, reason = evaluate(j, cfg)
+            if ok:
+                keep.append(j)
+            else:
+                print(f"[skip] {j['title']} ({reason})")
+        if errors:
+            notify(f"{args.only}: could not read the official job board: {errors[0][1]}", "Job watcher")
+        elif keep:
+            notify(format_message(keep, cfg), f"{args.only}: {len(keep)} current openings")
+        else:
+            notify(f"{args.only}: board read OK, but no current openings match your filters.", "Job watcher")
         return
 
     results, errors = collect(cfg)
@@ -388,7 +409,7 @@ def main():
     if keep:
         to_send = keep
         if first_run and len(keep) > MAX_FIRST_RUN:
-            to_send = sorted(keep, key=lambda j: j["loc_rank"])[:MAX_FIRST_RUN]
+            to_send = sorted(keep, key=lambda j: (j["loc_rank"], {"fit": 0, "unknown": 1}.get(j["exp_label"], 2)))[:MAX_FIRST_RUN]
             print(f"[info] first run: sent {MAX_FIRST_RUN} of {len(keep)}; rest marked seen")
         notify(format_message(to_send, cfg) + footer, f"{len(to_send)} new job openings")
     elif footer:
