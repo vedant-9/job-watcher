@@ -189,6 +189,20 @@
       "name": "Druva",
       "ats": "greenhouse",
       "slug": "druva"
+    },
+    {
+      "name": "Walmart",
+      "ats": "workday",
+      "host": "walmart.wd5.myworkdayjobs.com",
+      "tenant": "walmart",
+      "site": "WalmartExternal",
+      "searches": [
+        "software engineer III Bengaluru",
+        "software engineer III backend",
+        "software engineer Bengaluru",
+        "software engineer Pune",
+        "software engineer Hyderabad"
+      ]
     }
   ]
 }
