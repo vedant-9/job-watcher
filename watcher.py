@@ -335,6 +335,8 @@ def evaluate(job, cfg):
     job["loc_rank"], job["loc_label"] = loc
     label, txt = experience_verdict(parse_experience(desc or ""), cfg)
     job["exp_label"], job["exp_text"] = label, txt
+    if label == "unknown" and not cfg.get("send_unknown_experience", True):
+        return False, "experience not stated"
     if label in ("too_senior", "too_junior"):
         return False, f"experience {txt}"
     if label == "unknown" and re.search(cfg.get("senior_title_regex", r"$^"), job["title"].lower()):
