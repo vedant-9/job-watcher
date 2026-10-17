@@ -22,15 +22,19 @@ import re
 import smtplib
 import sys
 import urllib.request
+from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
 
 HERE = Path(__file__).parent
 CONFIG_PATH = HERE / "config.json"
 STATE_PATH = HERE / "seen.json"
+LOG_PATH = HERE / "jobs_log.md"
+LOG_HEADER = "# Job openings log\n\nNewest run first. Each section lists the NEW openings found in that run.\n\n"
 UA = "Mozilla/5.0 (job-watcher personal script)"
 MAX_FIRST_RUN = 100
 MULTI_LOC = re.compile(r"\b\d+\s+locations?\b", re.I)
+STATS = []
 
 
 # ---------- HTTP / text helpers ----------
@@ -42,7 +46,7 @@ def http_json(url, data=None, timeout=25):
         headers["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=body, headers=headers)
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode("utf-8", "replace"))
+        return json.loads(r.read().decode("utf-8", "replace"), strict=False)
 
 
 def strip_html(s):
@@ -70,7 +74,7 @@ def fetch_lever(c):
             parts.append(lst.get("text", ""))
             parts.append(strip_html(lst.get("content", "")))
         out.append({"id": j["id"], "title": j.get("text", ""),
-                    "location": (j.get("categories") or {}).get("location", "") or "",
+                    "location": " ; ".join(x for x in [(j.get("categories") or {}).get("location", "") or ""] + list((j.get("categories") or {}).get("allLocations", []) or []) if x),
                     "url": j.get("hostedUrl", ""), "desc": "\n".join(parts)})
     return out
 
@@ -144,12 +148,18 @@ def fetch_detail(c, job):
 def classify_location(loc, cfg):
     """Return (rank, label) or None. 0=preferred city, 1=acceptable city, 2=India generic, 3=multi."""
     s = (loc or "").lower()
-    for city in cfg["preferred_locations"]:
+    found, rank = [], 1
+    for city in cfg["preferred_locations"] + cfg["acceptable_locations"]:
         if city in s:
-            return 0, city.title()
-    for city in cfg["acceptable_locations"]:
-        if city in s:
-            return 1, "Bengaluru" if city in ("bangalore", "bengaluru") else city.title()
+            name = "Bengaluru" if city in ("bangalore", "bengaluru") else city.title()
+            if name not in found:
+                found.append(name)
+            if city in cfg["preferred_locations"]:
+                rank = 0
+    if "Navi Mumbai" in found and "Mumbai" in found:
+        found.remove("Mumbai")
+    if found:
+        return rank, " / ".join(found)
     if cfg.get("allow_generic_india", True) and re.search(r"\bindia\b", s):
         if not any(c in s for c in cfg["other_india_cities"]):
             return 2, "India (city not stated)"
@@ -159,9 +169,15 @@ def classify_location(loc, cfg):
 
 
 # ---------- Title filter ----------
-def title_ok(title, cfg):
+def slug_text(job_id):
+    """Workday ids are URL paths whose slug often carries the real title ('Tech-Lead--...')."""
+    sid = str(job_id or "")
+    return re.sub(r"[-_/]+", " ", sid) if sid.startswith("/") else ""
+
+
+def title_ok(title, cfg, extra=""):
     t = title.lower()
-    return bool(re.search(cfg["include_title_regex"], t)) and not re.search(cfg["exclude_title_regex"], t)
+    return bool(re.search(cfg["include_title_regex"], t)) and not re.search(cfg["exclude_title_regex"], t + " " + extra.lower())
 
 
 # ---------- Experience ----------
@@ -172,7 +188,7 @@ _SOFT = re.compile(r"prefer|bonus|nice to have|desirable|good to have|a plus|is 
 _BOILER = re.compile(r"our company|our team|we have|we've|founded|since \d{4}|combined|years of history|in business", re.I)
 
 
-def parse_experience(text):
+def parse_experience(text, relaxed=False):
     """Return (min_years, max_years_or_None) for the dominant requirement, or None if unclear."""
     found, spans = [], []
     for m in _RANGE.finditer(text):
@@ -188,12 +204,13 @@ def parse_experience(text):
             continue
         before = text[max(0, m.start() - 70):m.start()]
         after = text[m.end():m.end() + 70]
-        if not _EXP_WORD.search(before + " " + after):
-            continue
-        sent_before = re.split(r"[.\n;]", before)[-1]   # same sentence only
-        sent_after = re.split(r"[.\n;]", after)[0]
-        if _SOFT.search(sent_before + " " + sent_after) or _BOILER.search(before + after):
-            continue
+        if not relaxed:
+            if not _EXP_WORD.search(before + " " + after):
+                continue
+            sent_before = re.split(r"[.\n;]", before)[-1]   # same sentence only
+            sent_after = re.split(r"[.\n;]", after)[0]
+            if _SOFT.search(sent_before + " " + sent_after) or _BOILER.search(before + after):
+                continue
         reqs.append((lo, hi))
     if not reqs:
         return None
@@ -292,6 +309,34 @@ def notify(text, subject="Job watcher"):
         print(text)
 
 
+# ---------- Link log (jobs_log.md) ----------
+def _md_link(title, url):
+    t = title.replace("[", "\\[").replace("]", "\\]")
+    u = (url or "").replace(" ", "%20").replace("(", "%28").replace(")", "%29")
+    return f"[{t}]({u})"
+
+
+def write_log(jobs, cfg, label=None):
+    """Put a new section of job links at the top of jobs_log.md (newest first)."""
+    now = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y, %I:%M %p IST")
+    groups = {0: "Pune", 1: "Hyderabad / Bengaluru / Mumbai", 2: "India, city not stated", 3: "Multiple locations (check)"}
+    order = {"fit": 0, "unknown": 1}
+    lines = [f"## {now} - {label or str(len(jobs)) + ' new job(s)'}", ""]
+    for rank in sorted(groups):
+        grp = sorted((j for j in jobs if j["loc_rank"] == rank),
+                     key=lambda j: (order.get(j["exp_label"], 2), j["company"], j["title"]))
+        if not grp:
+            continue
+        lines += [f"### {groups[rank]} ({len(grp)})", ""]
+        for j in grp:
+            exp = "exp not stated" if j["exp_label"] == "unknown" else j["exp_text"]
+            lines.append(f"- **{j['company']}**: {_md_link(j['title'], j['url'])} - {j['loc_label']} - {exp}")
+        lines.append("")
+    old = LOG_PATH.read_text() if LOG_PATH.exists() else ""
+    rest = old[len(LOG_HEADER):] if old.startswith(LOG_HEADER) else old
+    LOG_PATH.write_text(LOG_HEADER + "\n".join(lines) + "\n---\n\n" + rest)
+
+
 # ---------- Pipeline ----------
 def collect(cfg, verbose=True):
     results, errors = [], []
@@ -307,7 +352,8 @@ def collect(cfg, verbose=True):
         except Exception as e:
             errors.append((c["name"], str(e)))
             continue
-        matched = [j for j in jobs if title_ok(j["title"], cfg) and classify_location(j["location"], cfg)]
+        matched = [j for j in jobs if title_ok(j["title"], cfg, slug_text(j["id"])) and classify_location(j["location"], cfg)]
+        STATS.append((c["name"], len(jobs), len(matched)))
         if verbose:
             print(f"[ok] {c['name']}: {len(jobs)} total, {len(matched)} title+location match")
         for j in matched:
@@ -333,7 +379,11 @@ def evaluate(job, cfg):
     if not loc:
         return False, "location not in target"
     job["loc_rank"], job["loc_label"] = loc
-    label, txt = experience_verdict(parse_experience(desc or ""), cfg)
+    req = parse_experience(desc or "")
+    treq = parse_experience(job["title"] + " " + slug_text(job["id"]), relaxed=True)
+    if treq and (req is None or treq[0] > req[0]):
+        req = treq
+    label, txt = experience_verdict(req, cfg)
     job["exp_label"], job["exp_text"] = label, txt
     if label == "unknown" and not cfg.get("send_unknown_experience", True):
         return False, "experience not stated"
@@ -361,7 +411,11 @@ def main():
         return
     if args.check:
         _, errors = collect(cfg)
-        print(f"\n{len(cfg['companies']) - len(errors)} OK, {len(errors)} failing")
+        ok = [f"{n}: {t} listed, {m} match title+location" for n, t, m in STATS]
+        bad = [f"{n}: {e[:120]}" for n, e in errors]
+        msg = (f"Source check: {len(ok)} OK, {len(bad)} failing\n\nFAILING:\n" + ("\n".join(bad) or "none")
+               + "\n\nOK:\n" + "\n".join(ok))
+        notify(msg, "Job watcher: source check")
         return
 
     if args.only:
@@ -376,6 +430,8 @@ def main():
                 keep.append(j)
             else:
                 print(f"[skip] {j['title']} ({reason})")
+        if keep:
+            write_log(keep, cfg, f"{args.only}: all current openings")
         if errors:
             notify(f"{args.only}: could not read the official job board: {errors[0][1]}", "Job watcher")
         elif keep:
@@ -407,6 +463,7 @@ def main():
         footer = ("\n\nSources that failed on this first run (fix the board name in config.json or "
                   "disable with \"enabled\": false):\n" + "\n".join(f"- {n}" for n, _ in errors))
     if keep:
+        write_log(keep, cfg)
         to_send = keep
         if first_run and len(keep) > MAX_FIRST_RUN:
             to_send = sorted(keep, key=lambda j: (j["loc_rank"], {"fit": 0, "unknown": 1}.get(j["exp_label"], 2)))[:MAX_FIRST_RUN]
