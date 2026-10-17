@@ -2,11 +2,11 @@ name: job-watcher
 
 on:
   schedule:
-    - cron: "30 2 * * *"   # daily at 08:00 IST (02:30 UTC)
+    - cron: "30 2,14 * * *"   # 08:00 and 20:00 IST (02:30 and 14:30 UTC)
   workflow_dispatch:
     inputs:
       only:
-        description: "Optional: company name (e.g. Walmart) to list ALL its current matching openings"
+        description: "Optional: a company name (e.g. Walmart) to list ALL its current openings, or the word check to test every source"
         required: false
         default: ""
 
@@ -32,10 +32,12 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ONLY: ${{ inputs.only }}
         run: |
-          if [ -n "$ONLY" ]; then python watcher.py --only "$ONLY"; else python watcher.py; fi
-      - name: Save seen jobs
+          if [ "$ONLY" = "check" ]; then python watcher.py --check
+          elif [ -n "$ONLY" ]; then python watcher.py --only "$ONLY"
+          else python watcher.py; fi
+      - name: Save seen jobs and link log
         run: |
           git config user.name "job-watcher"
           git config user.email "job-watcher@users.noreply.github.com"
-          git add seen.json
-          git diff --cached --quiet || (git commit -m "update seen jobs" && git push)
+          for f in seen.json jobs_log.md; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet || (git commit -m "update seen jobs and link log" && git push)
