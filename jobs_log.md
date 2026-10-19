@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 20 Oct 2026, 01:38 AM IST - 1 new job(s)
+
+### Pune (1)
+
+- **NVIDIA**: [SWQA Test Developer Engineer](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/India-Pune/SWQA-Test-Developer-Engineer_JR2028109) - Pune - exp not stated
+
+---
+
 ## 19 Oct 2026, 01:34 PM IST - 1 new job(s)
 
 ### Pune (1)
