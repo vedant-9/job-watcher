@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 19 Oct 2026, 01:34 PM IST - 1 new job(s)
+
+### Pune (1)
+
+- **Mastercard**: [Software Engineer II](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II_R-289618) - Pune - exp not stated
+
+---
+
 ## 17 Oct 2026, 11:00 PM IST - 3 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
