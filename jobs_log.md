@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 23 Oct 2026, 01:23 PM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Intel**: [Low-Level Software Engineer](https://intel.wd1.myworkdayjobs.com/en-US/External/job/India-Bangalore/Low-Level-Software-Engineer_JR0288298) - Bengaluru - 2-6 yrs
+
+---
+
 ## 23 Oct 2026, 12:16 AM IST - 1 new job(s)
 
 ### Pune (1)
