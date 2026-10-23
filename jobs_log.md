@@ -2,6 +2,16 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 24 Oct 2026, 12:10 AM IST - 3 new job(s)
+
+### Pune (3)
+
+- **Mastercard**: [Software Engineer II - Java Full stack and AI (with Python)](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II---Java-Full-stack-and-AI--with-Python-_R-294262) - Pune - 3-6 yrs
+- **Mastercard**: [Software Engineer II - Java Full stack with AI](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II---Java-Full-stack-with-AI_R-294118) - Pune - 3-6 yrs
+- **Mastercard**: [Software Engineer II](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II_R-293529) - Pune - exp not stated
+
+---
+
 ## 23 Oct 2026, 01:23 PM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
