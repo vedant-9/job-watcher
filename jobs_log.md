@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 27 Oct 2026, 01:36 AM IST - 1 new job(s)
+
+### Pune (1)
+
+- **Mastercard**: [Senior Software Engineer](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Senior-Software-Engineer_R-294414) - Pune - 3-5 yrs
+
+---
+
 ## 24 Oct 2026, 12:10 AM IST - 3 new job(s)
 
 ### Pune (3)
