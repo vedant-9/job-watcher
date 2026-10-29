@@ -2,6 +2,20 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 30 Oct 2026, 01:19 AM IST - 4 new job(s)
+
+### Pune (1)
+
+- **Mastercard**: [Software Engineer II](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II_R-293708) - Pune - 3-6 yrs
+
+### Hyderabad / Bengaluru / Mumbai (3)
+
+- **Okta**: [Senior Software Engineer](https://www.okta.com/company/careers/opportunity/8263823?gh_jid=8263823) - Bengaluru - 3+ yrs
+- **Salesforce**: [Software Engineering MTS (Full-Stack)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineering-MTS--Full-Stack-_JR362247) - Hyderabad - 3+ yrs
+- **Fiserv**: [Software Development Engineer](https://fiserv.wd5.myworkdayjobs.com/en-US/EXT/job/Bengaluru---GS-India/Software-Development-Engineer_R-10405598) - Bengaluru - exp not stated
+
+---
+
 ## 27 Oct 2026, 01:36 AM IST - 1 new job(s)
 
 ### Pune (1)
