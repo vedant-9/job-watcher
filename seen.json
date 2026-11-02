@@ -63,6 +63,8 @@
 "Databricks|8829029002",
 "Databricks|8876613002",
 "Databricks|8876680002",
+"Databricks|8878946002",
+"Databricks|8924868002",
 "Elastic|8265123",
 "FIS|/job/IND-PUNE-FL2/Software-Engineer-Senior-Snowflake--DBT-_JR0309804-1",
 "FIS|/job/IND-PUNE-FL7/Dot-Net-Full-Stack-Developer_JR0308781",
@@ -86,6 +88,8 @@
 "Fiserv|/job/King-of-Prussia-Pennsylvania/InterSystems-ObjectScript-Developer_R-10396746",
 "Fiserv|/job/Pune---Trion-Business-Park-India/C-and-C---Develp-er_R-10395388",
 "Fiserv|/job/Pune---Trion-Business-Park-India/Expertise-Java-Developer--Exp-12--Years---Hands-on-SQL--AWS--Azure--DevOps-----Pune_R-10404803",
+"Fiserv|/job/Pune---Trion-Business-Park-India/Java---Sr-Product-Developer_R-10403221",
+"Fiserv|/job/Pune---Trion-Business-Park-India/Specialist--Software-Development-Engineering_R-10401175",
 "Intel|/job/India-Bangalore/AI-Software-Development-Engineer_JR0287693",
 "Intel|/job/India-Bangalore/Cloud-Software-Development-Engineer_JR0287692",
 "Intel|/job/India-Bangalore/Cloud-Software-Development-Engineer_JR0287694",
@@ -109,6 +113,7 @@
 "Mastercard|/job/Navi-Mumbai-India-Finicity/Software-Engineer-2_R-291365",
 "Mastercard|/job/Pune-India/Senior-Platform-Engineer_R-289826",
 "Mastercard|/job/Pune-India/Senior-Platform-Engineer_R-290928",
+"Mastercard|/job/Pune-India/Senior-Platform-Engineer_R-292589",
 "Mastercard|/job/Pune-India/Senior-Software-Engineer---Java-Full-stack-with-AI_R-294119",
 "Mastercard|/job/Pune-India/Senior-Software-Engineer--Database-Developer-_R-289596",
 "Mastercard|/job/Pune-India/Senior-Software-Engineer--Java-_R-289595",
@@ -297,6 +302,7 @@
 "Target|/job/BangaloreIndia/Sr-AI-Engineer--Item-Science_R0000450918",
 "Target|/job/Tower-02-Manyata-Embassy-Business-Park-Racenahali--Nagawara-Villages-Outer-Ring-Rd-Bangalore-540065/Sr-Engineer--Backend_R0000387032",
 "Twilio|8258587",
+"Twilio|8319386",
 "Workday|/job/Ireland-Dublin/Senior-AI-Software-Engineer---Deployment-Technology_JR-0110422",
 "Workday|/job/USA-CA-Pleasanton/Sr-Software-Development-Engineer--Full-Stack----Evisort-AI_JR-0108840",
 "Workday|/job/USA-CA-San-Francisco/Software-Development-Engineer--Pipedream-Connect_JR-0107821",
@@ -310,5 +316,6 @@
 "Zscaler|5202460007",
 "Zscaler|5233062007",
 "Zscaler|5261571007",
-"Zscaler|5267167007"
+"Zscaler|5267167007",
+"Zscaler|5278557007"
 ]
