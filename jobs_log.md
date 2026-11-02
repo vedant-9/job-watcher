@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 03 Nov 2026, 04:23 AM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Target**: [Engineer - Backend with Gen Ai](https://target.wd5.myworkdayjobs.com/en-US/targetcareers/job/L4-Manyata-Embassy-Business-Park-Racenahali--Nagawara-Villages-Outer-Ring-Rd-Bangalore-540065/Engineer---Backend-with-Gen-Ai_R0000479586) - Bengaluru - 2-4 yrs
+
+---
+
 ## 30 Oct 2026, 01:19 AM IST - 4 new job(s)
 
 ### Pune (1)
