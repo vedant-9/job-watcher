@@ -2,6 +2,15 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 03 Nov 2026, 03:27 PM IST - 2 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **Fiserv**: [SDE](https://fiserv.wd5.myworkdayjobs.com/en-US/EXT/job/Bengaluru---GS-India/SDE_R-10406535) - Bengaluru - 3+ yrs
+- **Salesforce**: [Software Engineering, MTS (Backend)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineering--MTS--Backend---Infra-_JR350272) - Hyderabad - exp not stated
+
+---
+
 ## 03 Nov 2026, 04:23 AM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
