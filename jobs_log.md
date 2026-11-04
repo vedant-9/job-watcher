@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 04 Nov 2026, 03:14 PM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Zscaler**: [Sr. Software Development Engineer - Java/ Agentic AI/ Big Data](https://job-boards.greenhouse.io/zscaler/jobs/5267221007) - Bengaluru - 3+ yrs
+
+---
+
 ## 03 Nov 2026, 03:27 PM IST - 2 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (2)
