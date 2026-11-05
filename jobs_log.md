@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 05 Nov 2026, 03:17 PM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Salesforce**: [Full-Stack Developer — AI-Native Engineering](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Bangalore/Full-Stack-Developer---AI-Native-Engineering_JR359537) - Bengaluru - exp not stated
+
+---
+
 ## 04 Nov 2026, 03:14 PM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
