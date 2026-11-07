@@ -58,8 +58,12 @@ def strip_html(s):
 
 
 # ---------- Fetchers: list endpoints -> {id,title,location,url[,desc]} ----------
+def _gh_host(c):
+    return "boards-api.eu.greenhouse.io" if c.get("eu") else "boards-api.greenhouse.io"
+
+
 def fetch_greenhouse(c):
-    d = http_json(f"https://boards-api.greenhouse.io/v1/boards/{c['slug']}/jobs")
+    d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs")
     return [{"id": str(j["id"]), "title": j.get("title", ""),
              "location": (j.get("location") or {}).get("name", ""),
              "url": j.get("absolute_url", "")} for j in d.get("jobs", [])]
@@ -133,7 +137,7 @@ FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever,
 def fetch_detail(c, job):
     """Return (description_text, location_text_or_None)."""
     if c["ats"] == "greenhouse":
-        d = http_json(f"https://boards-api.greenhouse.io/v1/boards/{c['slug']}/jobs/{job['id']}")
+        d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs/{job['id']}")
         return strip_html(d.get("content", "")), None
     if c["ats"] == "workday":
         d = http_json(f"https://{c['host']}/wday/cxs/{c['tenant']}/{c['site']}{job['id']}")
