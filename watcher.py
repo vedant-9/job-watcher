@@ -162,9 +162,11 @@ def classify_location(loc, cfg):
         return rank, " / ".join(found)
     if cfg.get("allow_generic_india", True) and re.search(r"\bindia\b", s):
         if not any(c in s for c in cfg["other_india_cities"]):
-            return 2, "India (city not stated)"
+            return 2, ("Remote (India)" if "remote" in s else "India (city not stated)")
     if MULTI_LOC.search(s):
         return 3, "Multiple locations (check)"
+    if cfg.get("include_remote", True) and re.search(r"\bremote\b|\banywhere\b|\bwork from home\b", s):
+        return 4, "Remote (verify India eligibility)"
     return None
 
 
@@ -319,7 +321,8 @@ def _md_link(title, url):
 def write_log(jobs, cfg, label=None):
     """Put a new section of job links at the top of jobs_log.md (newest first)."""
     now = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y, %I:%M %p IST")
-    groups = {0: "Pune", 1: "Hyderabad / Bengaluru / Mumbai", 2: "India, city not stated", 3: "Multiple locations (check)"}
+    groups = {0: "Pune", 1: "Hyderabad / Bengaluru / Mumbai", 2: "India, city not stated / Remote (India)", 3: "Multiple locations (check)",
+              4: "Remote (verify India eligibility)"}
     order = {"fit": 0, "unknown": 1}
     lines = [f"## {now} - {label or str(len(jobs)) + ' new job(s)'}", ""]
     for rank in sorted(groups):
@@ -379,6 +382,8 @@ def evaluate(job, cfg):
     if not loc:
         return False, "location not in target"
     job["loc_rank"], job["loc_label"] = loc
+    if loc[0] == 4 and not re.search(r"\bindia\b", (desc or "").lower()):
+        return False, "remote role with no mention of India"
     req = parse_experience(desc or "")
     treq = parse_experience(job["title"] + " " + slug_text(job["id"]), relaxed=True)
     if treq and (req is None or treq[0] > req[0]):
