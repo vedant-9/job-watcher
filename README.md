@@ -3,6 +3,9 @@
 Checks company job boards twice a day (8 AM and 8 PM IST) and reports only NEW openings that are:
 
 - in India: Pune first, then Hyderabad / Bengaluru / Mumbai (or "India" with no city stated)
+- remote roles: "Remote (India)" is listed with the India group. A plain "Remote" role is listed under
+  "Remote (verify India eligibility)" only if its description mentions India (turn off with
+  `"include_remote": false`)
 - SDE2-style backend / AI roles (no lead, staff, principal, frontend, mobile, hardware, fresher or intern roles)
 - within your experience (`my_years` = 3.3 in `config.json`; a role passes if its minimum years is at most
   `my_years + fit_slack`). Experience is read from the description, title and URL. If a posting
