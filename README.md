@@ -7,7 +7,7 @@ Checks company job boards twice a day (8 AM and 8 PM IST) and reports only NEW o
   "Remote (verify India eligibility)" only if its description mentions India (turn off with
   `"include_remote": false`)
 - SDE2-style backend / AI roles (no lead, staff, principal, frontend, mobile, hardware, fresher or intern roles)
-- within your experience (`my_years` = 3.3 in `config.json`; a role passes if its minimum years is at most
+- within your experience (`my_years` = 3.5 in `config.json`; a role passes if its minimum years is at most
   `my_years + fit_slack`). Experience is read from the description, title and URL. If a posting
   doesn't state it, it is sent as "exp not stated".
 
