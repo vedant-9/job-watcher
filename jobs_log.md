@@ -2,6 +2,15 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 07 Nov 2026, 10:36 PM IST - 2 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **HPE**: [Software Engineer -  Networking Datapath (QoS/CoS/ Firewall/ACLs/Filters)](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Bengaluru-Karntaka-India/Software-Engineer--C-C-----Linux-Systems_1198468) - Bengaluru - 4-10 yrs
+- **HPE**: [Systems/Software Engineer II - Platforms Developer (MacSec, Timing, Optics)](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Bengaluru-Karntaka-India/Systems-Software-Engineer-II---Platforms-Developer--MacSec--Timing--Optics-_1218144-2) - Bengaluru - exp not stated
+
+---
+
 ## 07 Nov 2026, 02:38 PM IST - 39 new job(s)
 
 ### Pune (2)
