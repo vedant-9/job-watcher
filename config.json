@@ -352,6 +352,12 @@
       "name": "Datadog",
       "ats": "greenhouse",
       "slug": "datadog"
+    },
+    {
+      "name": "Veeam",
+      "ats": "greenhouse",
+      "slug": "veeamsoftware",
+      "eu": true
     }
   ],
   "include_remote": true
