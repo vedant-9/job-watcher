@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 09 Nov 2026, 03:41 PM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Deutsche Bank**: [Backend Developer, AVP](https://db.wd3.myworkdayjobs.com/en-US/DBWebsite/job/Bangalore-Velankani-ISC/Backend-Developer--AVP_R0449344) - Bengaluru - exp not stated
+
+---
+
 ## 07 Nov 2026, 10:36 PM IST - 2 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (2)
