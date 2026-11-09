@@ -30,6 +30,7 @@ HERE = Path(__file__).parent
 CONFIG_PATH = HERE / "config.json"
 STATE_PATH = HERE / "seen.json"
 LOG_PATH = HERE / "jobs_log.md"
+STATUS_PATH = HERE / "status.md"
 LOG_HEADER = "# Job openings log\n\nNewest run first. Each section lists the NEW openings found in that run.\n\n"
 UA = "Mozilla/5.0 (job-watcher personal script)"
 MAX_FIRST_RUN = 100
@@ -344,6 +345,17 @@ def write_log(jobs, cfg, label=None):
     LOG_PATH.write_text(LOG_HEADER + "\n".join(lines) + "\n---\n\n" + rest)
 
 
+def write_status(errors, n_new):
+    """Overwrite status.md every run, so there is always proof the bot ran (and it keeps the repo active)."""
+    now = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y, %I:%M %p IST")
+    lines = ["# Watcher status", "", f"Last run: {now}",
+             f"Sources read OK: {len(STATS)}", f"Sources failing: {len(errors)}",
+             f"New matching jobs this run: {n_new}", ""]
+    if errors:
+        lines += ["Failing sources:"] + [f"- {n}: {str(e)[:100]}" for n, e in errors] + [""]
+    STATUS_PATH.write_text("\n".join(lines))
+
+
 # ---------- Pipeline ----------
 def collect(cfg, verbose=True):
     results, errors = [], []
@@ -468,8 +480,8 @@ def main():
         return
 
     footer = ""
-    if first_run and errors:
-        footer = ("\n\nSources that failed on this first run (fix the board name in config.json or "
+    if errors:
+        footer = ("\n\nSources that failed (fix the board name in config.json or "
                   "disable with \"enabled\": false):\n" + "\n".join(f"- {n}" for n, _ in errors))
     if keep:
         write_log(keep, cfg)
@@ -477,11 +489,12 @@ def main():
         if first_run and len(keep) > MAX_FIRST_RUN:
             to_send = sorted(keep, key=lambda j: (j["loc_rank"], {"fit": 0, "unknown": 1}.get(j["exp_label"], 2)))[:MAX_FIRST_RUN]
             print(f"[info] first run: sent {MAX_FIRST_RUN} of {len(keep)}; rest marked seen")
-        notify(format_message(to_send, cfg) + footer, f"{len(to_send)} new job openings")
-    elif footer:
-        notify("No new matching jobs yet." + footer)
+        notify(format_message(to_send, cfg) + (footer if first_run else ""), f"{len(to_send)} new job openings")
+    elif cfg.get("heartbeat", True):
+        notify(f"Job watcher ran OK: {len(STATS)} sources read, no new matching jobs." + footer, "Job watcher: no new jobs")
     else:
         print("No new matching jobs.")
+    write_status(errors, len(keep))
     seen.update(j["key"] for j in results)
     save_state(seen)
 
