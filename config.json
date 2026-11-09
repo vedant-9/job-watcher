@@ -111,7 +111,8 @@
       "host": "nutanix.wd1.myworkdayjobs.com",
       "tenant": "nutanix",
       "site": "Nutanix",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false
     },
     {
       "name": "Autodesk",
@@ -167,7 +168,8 @@
       "host": "amd.wd1.myworkdayjobs.com",
       "tenant": "amd",
       "site": "AMD",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false
     },
     {
       "name": "Fiserv",
@@ -202,7 +204,8 @@
         "software engineer Bengaluru",
         "software engineer Pune",
         "software engineer Hyderabad"
-      ]
+      ],
+      "enabled": false
     },
     {
       "name": "Airbnb",
@@ -274,7 +277,8 @@
       "host": "uipath.wd5.myworkdayjobs.com",
       "tenant": "uipath",
       "site": "UiPath_External_Careers",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false
     },
     {
       "name": "Snowflake",
@@ -282,7 +286,8 @@
       "host": "snowflake.wd1.myworkdayjobs.com",
       "tenant": "snowflake",
       "site": "Snowflake",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false
     },
     {
       "name": "Target",
@@ -357,7 +362,8 @@
       "name": "Veeam",
       "ats": "greenhouse",
       "slug": "veeamsoftware",
-      "eu": true
+      "eu": true,
+      "enabled": false
     }
   ],
   "include_remote": true,
