@@ -360,5 +360,6 @@
       "eu": true
     }
   ],
-  "include_remote": true
+  "include_remote": true,
+  "heartbeat": true
 }
