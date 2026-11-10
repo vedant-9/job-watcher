@@ -2,6 +2,17 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 10 Nov 2026, 03:48 PM IST - 4 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (4)
+
+- **Motive**: [Software Engineer (Backend)](https://job-boards.greenhouse.io/gomotive/jobs/8905068002) - Bengaluru - 4+ yrs
+- **Salesforce**: [Software Engineering MTS – Production Support & AI Automation](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineering-MTS---Production-Support---AI-Automation_JR365887) - Hyderabad - 3+ yrs
+- **Wells Fargo**: [Senior Software Engineer -  F5 BIG-IP (LTM/GTM/DNS/WAF) and AVI Load Balancers](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Bengaluru-India/Senior-Software-Engineer_R-578484) - Bengaluru - 4+ yrs
+- **Salesforce**: [Software Engineer SMTS](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineer-SMTS_JR338173) - Hyderabad - exp not stated
+
+---
+
 ## 09 Nov 2026, 03:41 PM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
