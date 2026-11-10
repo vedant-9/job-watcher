@@ -508,7 +508,7 @@ def main():
     footer = ""
     if errors:
         footer = ("\n\nSources that failed (fix the board name in config.json or "
-                  "disable with \"enabled\": false):\n" + "\n".join(f"- {n}" for n, _ in errors))
+                  "disable with \"enabled\": false):\n" + "\n".join(f"- {n}: {str(e)[:90]}" for n, e in errors))
     if keep:
         write_log(keep, cfg)
         to_send = keep
