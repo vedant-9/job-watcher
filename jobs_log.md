@@ -2,6 +2,19 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 11 Nov 2026, 03:18 PM IST - 3 new job(s)
+
+### Pune (1)
+
+- **Zscaler**: [Senior AI Platform Engineer](https://job-boards.greenhouse.io/zscaler/jobs/5278563007) - Pune - 4+ yrs
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **Wells Fargo**: [Software Engineer - Java Fullstack](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Hyderabad-India/Software-Engineer---Java-Fullstack_R-584425) - Hyderabad - 2+ yrs
+- **Elastic**: [Agentic AI Engineer](https://jobs.elastic.co/jobs?gh_jid=8247206&gh_jid=8247206) - Bengaluru - exp not stated
+
+---
+
 ## 10 Nov 2026, 03:48 PM IST - 4 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (4)
