@@ -2,6 +2,24 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 12 Nov 2026, 03:40 PM IST - 8 new job(s)
+
+### Pune (2)
+
+- **Deutsche Bank**: [Full-Stack Developer, AVP](https://db.wd3.myworkdayjobs.com/en-US/DBWebsite/job/Pune---Margarpatta/Full-Stack-Developer--AVP_R0447059) - Pune - exp not stated
+- **Deutsche Bank**: [Python Developer, AVP](https://db.wd3.myworkdayjobs.com/en-US/DBWebsite/job/Pune---Margarpatta/Python-Developer--AVP_R0422694) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (6)
+
+- **Rubrik**: [Software Engineer - Cloud Native Protection](https://www.rubrik.com/company/careers/departments/job.8327940?gh_jid=8327940) - Bengaluru - 2+ yrs
+- **Salesforce**: [Software Engineering MTS](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineering-MTS_JR368159) - Hyderabad - 3+ yrs
+- **Wells Fargo**: [Senior Software Engineer-Java Full Stack](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Bengaluru-India/Senior-Software-Engineer-Java-Full-Stack_R-577547) - Bengaluru - 4+ yrs
+- **Zscaler**: [Sr. Software Development Engineer (Backend Dev - C)](https://job-boards.greenhouse.io/zscaler/jobs/5271582007) - Bengaluru - 3+ yrs
+- **Pure Storage**: [Member of Technical Staff](https://job-boards.greenhouse.io/purestorage/jobs/8382294) - Bengaluru - exp not stated
+- **Salesforce**: [Software Engineering MTS](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/India---Hyderabad/Software-Engineering-MTS_JR363864) - Hyderabad / Bengaluru - exp not stated
+
+---
+
 ## 11 Nov 2026, 03:18 PM IST - 3 new job(s)
 
 ### Pune (1)
