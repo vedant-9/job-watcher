@@ -2,6 +2,18 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 13 Nov 2026, 03:04 AM IST - 2 new job(s)
+
+### Pune (1)
+
+- **Deutsche Bank**: [Technical specialist- Backend Engineer (L3), AS](https://db.wd3.myworkdayjobs.com/en-US/DBWebsite/job/Pune---Margarpatta/Technical-specialist--Backend-Engineer--L3---AS_R0448756) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Pure Storage**: [Member of Technical Staff - Backend (EXA)](https://job-boards.greenhouse.io/purestorage/jobs/8355355) - Bengaluru - exp not stated
+
+---
+
 ## 12 Nov 2026, 03:40 PM IST - 8 new job(s)
 
 ### Pune (2)
