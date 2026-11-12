@@ -379,7 +379,8 @@
       "host": "jobs.amdocs.com",
       "domain": "amdocs.com",
       "search": "software engineer",
-      "location": "India"
+      "location": "India",
+      "enabled": false
     }
   ],
   "include_remote": true,
