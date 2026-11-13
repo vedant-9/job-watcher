@@ -381,6 +381,14 @@
       "search": "software engineer",
       "location": "India",
       "enabled": false
+    },
+    {
+      "name": "BP",
+      "ats": "workday",
+      "host": "bpinternational.wd3.myworkdayjobs.com",
+      "tenant": "bpinternational",
+      "site": "bpCareers",
+      "search": "software engineer"
     }
   ],
   "include_remote": true,
