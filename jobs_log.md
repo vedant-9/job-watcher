@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 13 Nov 2026, 03:25 PM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Wells Fargo**: [Senior Software Engineer (Data Engineer)](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Hyderabad-India/Senior-Software-Engineer_R-571600) - Hyderabad - 4+ yrs
+
+---
+
 ## 13 Nov 2026, 03:04 AM IST - 2 new job(s)
 
 ### Pune (1)
