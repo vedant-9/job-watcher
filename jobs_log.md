@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 14 Nov 2026, 02:31 AM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Motive**: [AI Engineer](https://job-boards.greenhouse.io/gomotive/jobs/8785039002) - Bengaluru - exp not stated
+
+---
+
 ## 13 Nov 2026, 03:25 PM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
