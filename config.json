@@ -36,8 +36,8 @@
     "bhubaneswar",
     "mohali"
   ],
-  "include_title_regex": "(software (development |dev )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b|\\bengineer,? \\(?(as|avp)\\b)",
-  "exclude_title_regex": "(\\bintern(ship)?s?\\b|trainee|apprentice|co-?op|graduate|new grad|fresher|entry[- ]level|early career|campus|university|junior|\\bassociate\\b|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|\\blead\\b|\\blmts\\b|\\bpmts\\b|tech lead|principal|distinguished|director|manager|architect|\\bvp\\b|vice president|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|\\bsales\\b|security analyst|gpu|cuda|firmware|driver|embedded|autosar|vlsi|fpga|asic|silicon|hardware|automotive|drive ?os|tegra|kernel|mainframe|cobol|as400|tandem|base24|\\.net|dotnet|angular|c#|mobile|developer advocate|workday|appian|servicenow|abap|sap basis|network(ing)? (software|engineer)|robotics|autonomous|simulation|graphics|display|media and broadcasting|marketing|verification|developer technology|professional services|technical program)",
+  "include_title_regex": "(software (development |dev )?engineer|\\bsde\\b|\\bsde[- ]?(2|ii)\\b|backend|back-end|member of technical staff|\\bmts\\b|ai engineer|machine learning engineer|forward deployed|\\bfde\\b|application developer|java developer|python developer|platform engineer|\\bdeveloper\\b|\\bengineer,? \\(?(as|avp)\\b|agent engineer)",
+  "exclude_title_regex": "(\\bintern(ship)?s?\\b|trainee|apprentice|co-?op|graduate|new grad|fresher|entry[- ]level|early career|campus|university|junior|\\bassociate\\b|\\bsde[- ]?(1|i)\\b|engineer i\\b|\\b1\\b$|(?<!technical )\\bstaff\\b|\\blead\\b|\\blmts\\b|\\bpmts\\b|tech lead|principal|distinguished|director|manager|architect|\\bvp\\b|vice president|head of|front[- ]?end|\\bui\\b|\\bandroid\\b|\\bios\\b|\\bqa\\b|\\bsdet\\b|in test|test engineer|quality|support engineer|solutions? engineer|data scientist|\\bsales\\b|security analyst|gpu|cuda|firmware|driver|embedded|autosar|vlsi|fpga|asic|silicon|hardware|automotive|drive ?os|tegra|kernel|mainframe|cobol|as400|tandem|base24|\\.net|dotnet|angular|c#|mobile|developer advocate|workday|appian|servicenow|abap|sap basis|network(ing)? (software|engineer)|robotics|autonomous|simulation|graphics|display|media and broadcasting|marketing|verification|developer technology|professional services|technical program|salesforce developer)",
   "senior_title_regex": "(\\bsenior\\b|\\bsr\\b)",
   "fresher_desc_regex": "(freshers?|entry[- ]level|new grad|recent graduates?|early[- ]career|campus hire|0\\s*-\\s*1\\s*years?|no (prior )?experience (is )?(required|needed))",
   "companies": [
@@ -389,6 +389,52 @@
       "tenant": "bpinternational",
       "site": "bpCareers",
       "search": "software engineer"
+    },
+    {
+      "name": "Glean",
+      "ats": "greenhouse",
+      "slug": "gleanwork"
+    },
+    {
+      "name": "GitLab",
+      "ats": "greenhouse",
+      "slug": "gitlab"
+    },
+    {
+      "name": "Samsara",
+      "ats": "greenhouse",
+      "slug": "samsara"
+    },
+    {
+      "name": "Worldpay",
+      "ats": "workday",
+      "host": "worldpay.wd5.myworkdayjobs.com",
+      "tenant": "worldpay",
+      "site": "Worldpay_External_Careers_Site",
+      "search": "software engineer"
+    },
+    {
+      "name": "Barclays",
+      "ats": "workday",
+      "host": "barclays.wd3.myworkdayjobs.com",
+      "tenant": "barclays",
+      "site": "External_Career_Site_Barclays",
+      "search": "software engineer"
+    },
+    {
+      "name": "Sarvam AI",
+      "ats": "ashby",
+      "slug": "sarvam"
+    },
+    {
+      "name": "Arcesium",
+      "ats": "greenhouse",
+      "slug": "arcesiumllc"
+    },
+    {
+      "name": "Telnyx",
+      "ats": "greenhouse",
+      "slug": "telnyx54"
     }
   ],
   "include_remote": true,
