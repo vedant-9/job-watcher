@@ -2,6 +2,47 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 16 Nov 2026, 01:28 AM IST - 28 new job(s)
+
+### Pune (12)
+
+- **Barclays**: [Forward Deployed Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer-Permissions_JR-0000040669) - Pune - 3+ yrs
+- **Mastercard**: [Senior Software Engineer - CS](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Senior-Software-Engineer---CS_R-280776) - Pune - 3-5 yrs
+- **Barclays**: [AI Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/AI-Developer_JR-0000052472) - Pune - exp not stated
+- **Barclays**: [Avaloq Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Avaloq-Developer_JR-0000111028-2) - Pune - exp not stated
+- **Barclays**: [Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Developer_JR-0000122765) - Pune - exp not stated
+- **Barclays**: [Full Stack Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Full-Stack-Developer_JR-0000126582) - Pune - exp not stated
+- **Barclays**: [Infrastructure Design Engineer (AVP)](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Infrastructure-Design-Engineer--AVP-_JR-0000125520) - Pune - exp not stated
+- **Barclays**: [Java Kafka Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Java-Kafka-Developer_JR-0000126876) - Pune - exp not stated
+- **Barclays**: [Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer_JR-0000108971) - Pune - exp not stated
+- **Barclays**: [Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer_JR-0000118677) - Pune - exp not stated
+- **Barclays**: [Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Senior-Analyst_JR-0000116140) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AVP](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AVP_JR-0000122648) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (15)
+
+- **Barclays**: [Software Engineer - Flink](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Bengaluru-Maruthi-Onyx---TESCO-TSA/Software-Engineer---Developer-Experience_JR-0000103127) - Bengaluru - 2+ yrs
+- **GitLab**: [Intermediate Backend Engineer, Authorization](https://job-boards.greenhouse.io/gitlab/jobs/8905402002) - Bengaluru - 2-4 yrs
+- **Sarvam AI**: [Agent Engineer](https://jobs.ashbyhq.com/sarvam/36f89b00-2010-4d23-aae3-17a2f53d9eaa) - Bengaluru - 3+ yrs
+- **Sarvam AI**: [Senior Software Engineer - Data Infrastructure](https://jobs.ashbyhq.com/sarvam/98a3eeee-68b8-4555-bdc6-3dd683980343) - Bengaluru - 2-5 yrs
+- **Sarvam AI**: [Software Development Engineer - Tejas](https://jobs.ashbyhq.com/sarvam/db89b576-2456-4cc4-ab0b-c45f8c6c27f0) - Bengaluru - 3-5 yrs
+- **Telnyx**: [Forward Deployed Engineer, India](https://job-boards.greenhouse.io/telnyx54/jobs/7992730003) - Bengaluru - 3+ yrs
+- **Barclays**: [Customer Journey - Software Engineer - AVP](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Bengaluru-Maruthi-Onyx---TESCO-TSA/Customer-Journey---Software-Engineer---AVP_JR-0000133211) - Bengaluru - exp not stated
+- **Barclays**: [Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Bengaluru-Maruthi-Onyx---TESCO-TSA/Data-Engineer_JR-0000088850-9) - Bengaluru - exp not stated
+- **Barclays**: [Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Bengaluru-Maruthi-Onyx---TESCO-TSA/Business-Analyst_JR-0000060342) - Bengaluru - exp not stated
+- **GitLab**: [Intermediate Backend Engineer , Security Factory](https://job-boards.greenhouse.io/gitlab/jobs/8890971002) - Bengaluru - exp not stated
+- **GitLab**: [Intermediate Backend Engineer, India](https://job-boards.greenhouse.io/gitlab/jobs/8775507002) - Bengaluru - exp not stated
+- **GitLab**: [Software Engineer, Delivery : Release](https://job-boards.greenhouse.io/gitlab/jobs/8916232002) - Bengaluru - exp not stated
+- **Sarvam AI**: [Platform Engineer - AI Infrastructure](https://jobs.ashbyhq.com/sarvam/fcb15601-6440-41f7-aa79-b9992057a4b2) - Bengaluru - exp not stated
+- **Sarvam AI**: [SDE2 - API Platform](https://jobs.ashbyhq.com/sarvam/fd9ca9f7-c546-4264-acc6-ee4e58c0e693) - Bengaluru - exp not stated
+- **Sarvam AI**: [Software Engineer - Model API Platform](https://jobs.ashbyhq.com/sarvam/0371342b-5cb8-487b-9310-4d0eb5b37f47) - Bengaluru - exp not stated
+
+### Remote (verify India eligibility) (1)
+
+- **GitLab**: [Backend Engineer (Python),AI Engineering: Agent Foundations](https://job-boards.greenhouse.io/gitlab/jobs/8704363002) - Remote (verify India eligibility) - exp not stated
+
+---
+
 ## 14 Nov 2026, 02:31 AM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)

@@ -1,6 +1,6 @@
 # Watcher status
 
-Last run: 15 Nov 2026, 03:20 PM IST
-Sources read OK: 45
+Last run: 16 Nov 2026, 01:28 AM IST
+Sources read OK: 53
 Sources failing: 0
-New matching jobs this run: 0
+New matching jobs this run: 28
