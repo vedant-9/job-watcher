@@ -2,6 +2,20 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 16 Nov 2026, 03:37 PM IST - 4 new job(s)
+
+### Pune (3)
+
+- **Barclays**: [AI Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/AI-Software-Engineer_JR-0000129112) - Pune - exp not stated
+- **Barclays**: [AI Software Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/AI-Software-Engineer_JR-0000129116) - Pune - exp not stated
+- **Barclays**: [Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Developer_JR-0000087461) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Barclays**: [Gen AI Engineer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Bengaluru-Maruthi-Onyx---TESCO-TSA/Gen-AI-Engineer_JR-0000100208) - Bengaluru - exp not stated
+
+---
+
 ## 16 Nov 2026, 01:28 AM IST - 28 new job(s)
 
 ### Pune (12)
