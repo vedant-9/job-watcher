@@ -2,6 +2,16 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 17 Nov 2026, 04:37 PM IST - 3 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (3)
+
+- **Wells Fargo**: [Senior Software Engineer - Application Security & AI](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Bengaluru-India/Senior-Software-Engineer---Application-Security---AI_R-584093) - Bengaluru - 4+ yrs
+- **Rubrik**: [Software Engineer ](https://www.rubrik.com/company/careers/departments/job.8349847?gh_jid=8349847) - Bengaluru - exp not stated
+- **Sarvam AI**: [SDE2 - Full Stack](https://jobs.ashbyhq.com/sarvam/fa96b55d-0c77-423d-8eef-f579c8496adb) - Bengaluru - exp not stated
+
+---
+
 ## 16 Nov 2026, 03:37 PM IST - 4 new job(s)
 
 ### Pune (3)
