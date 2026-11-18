@@ -172,8 +172,31 @@ def fetch_eightfold(c):
     return out
 
 
+def fetch_smartrecruiters(c):
+    """SmartRecruiters public posting API (e.g. Arista): /v1/companies/<slug>/postings."""
+    out, off = [], 0
+    while off < c.get("max_results", 300):
+        d = http_json(f"https://api.smartrecruiters.com/v1/companies/{c['slug']}/postings?limit=100&offset={off}&country={c.get('country', 'in')}")
+        items = d.get("content", [])
+        if not items:
+            break
+        for j in items:
+            loc = j.get("location") or {}
+            country = "India" if str(loc.get("country", "")).lower() == "in" else loc.get("country", "")
+            text = " ".join(x for x in [loc.get("city"), loc.get("region"), country] if x)
+            if loc.get("remote"):
+                text += " Remote"
+            out.append({"id": str(j["id"]), "title": j.get("name", ""), "location": text,
+                        "url": f"https://jobs.smartrecruiters.com/{c['slug']}/{j['id']}"})
+        off += 100
+        if len(items) < 100:
+            break
+    return out
+
+
 FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever,
-            "ashby": fetch_ashby, "workday": fetch_workday, "eightfold": fetch_eightfold}
+            "ashby": fetch_ashby, "workday": fetch_workday, "eightfold": fetch_eightfold,
+            "smartrecruiters": fetch_smartrecruiters}
 
 
 # ---------- Detail fetch (only for NEW, title/location-matched jobs) ----------
@@ -182,6 +205,11 @@ def fetch_detail(c, job):
     if c["ats"] == "greenhouse":
         d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs/{job['id']}")
         return strip_html(d.get("content", "")), None
+    if c["ats"] == "smartrecruiters":
+        d = http_json(f"https://api.smartrecruiters.com/v1/companies/{c['slug']}/postings/{job['id']}")
+        secs = (d.get("jobAd") or {}).get("sections") or {}
+        return strip_html("\n".join((secs.get(k) or {}).get("text", "") for k in
+                          ("jobDescription", "qualifications", "additionalInformation"))), None
     if c["ats"] == "workday":
         d = http_json(f"https://{c['host']}/wday/cxs/{c['tenant']}/{c['site']}{job['id']}")
         info = d.get("jobPostingInfo", {})
