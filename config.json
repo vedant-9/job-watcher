@@ -435,6 +435,34 @@
       "name": "Telnyx",
       "ats": "greenhouse",
       "slug": "telnyx54"
+    },
+    {
+      "name": "Visa",
+      "ats": "workday",
+      "host": "visa.wd5.myworkdayjobs.com",
+      "tenant": "visa",
+      "site": "Visa",
+      "search": "software engineer"
+    },
+    {
+      "name": "Arista",
+      "ats": "smartrecruiters",
+      "slug": "aristanetworks"
+    },
+    {
+      "name": "Addepar",
+      "ats": "greenhouse",
+      "slug": "addepar1"
+    },
+    {
+      "name": "6sense",
+      "ats": "greenhouse",
+      "slug": "6sense"
+    },
+    {
+      "name": "Entrata",
+      "ats": "lever",
+      "slug": "entrata"
     }
   ],
   "include_remote": true,
