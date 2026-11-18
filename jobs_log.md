@@ -2,6 +2,21 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 19 Nov 2026, 03:48 AM IST - 5 new job(s)
+
+### Pune (4)
+
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000131039) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000131049) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000131042) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000131045) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Wells Fargo**: [Software Engineer - Salesforce Development](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Hyderabad-India/Software-Engineer---Salesforce-Development_R-570932) - Hyderabad - 2+ yrs
+
+---
+
 ## 18 Nov 2026, 04:07 PM IST - 12 new job(s)
 
 ### Pune (4)
