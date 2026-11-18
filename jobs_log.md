@@ -2,6 +2,28 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 18 Nov 2026, 04:07 PM IST - 12 new job(s)
+
+### Pune (4)
+
+- **Addepar**: [Software Engineer - ADM](https://job-boards.greenhouse.io/addepar1/jobs/8799881002) - Pune - 3+ yrs
+- **Autodesk**: [Software Engineer (Python/Node.JS,AWS)](https://autodesk.wd1.myworkdayjobs.com/en-US/Ext/job/Pune-IND/Software-Engineer--Python-NodeJS-AWS-_26WD102191-2) - Pune - 3-5 yrs
+- **Entrata**: [Software Engineer](https://jobs.lever.co/entrata/661bbcc5-3514-4ba3-b616-8838da6c53ec) - Pune - exp not stated
+- **Entrata**: [Software Engineer ( AI, Python & AWS )](https://jobs.lever.co/entrata/fce2a8b4-042d-41ce-90ba-8363e182e897) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (8)
+
+- **6sense**: [Software Engineer III](https://boards.greenhouse.io/6sense/jobs/8394423?gh_jid=8394423) - Bengaluru - 4+ yrs
+- **Arista**: [Software Engineer (Routing Protocols)](https://jobs.smartrecruiters.com/aristanetworks/744000101547755) - Bengaluru - 2-8 yrs
+- **Arista**: [Software Engineer - Test Automation](https://jobs.smartrecruiters.com/aristanetworks/744000160116794) - Bengaluru - 3-6 yrs
+- **Arista**: [Software Engineer- SONiC](https://jobs.smartrecruiters.com/aristanetworks/744000103096425) - Bengaluru - 3-9 yrs
+- **Visa**: [Sr Software Engineer (3-5 yrs of exp - Full stack development, Java, React, Gen AI)](https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/IN---Bengaluru-India/Sr-Software-Engineer_REF078405W) - Bengaluru - 4+ yrs
+- **Zscaler**: [Senior Software Development Engineer](https://job-boards.greenhouse.io/zscaler/jobs/5291924007) - Bengaluru - 3+ yrs
+- **HPE**: [System Software Engineer III (Python Automation testing, EVPN-VXLAN)](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Bengaluru-Karntaka-India/System-Software-Engineer-III--Python-Automation-testing--L2-L3-Protocols-_1205988-2) - Bengaluru - exp not stated
+- **Pure Storage**: [Member of Technical Staff - Hyperscaler](https://job-boards.greenhouse.io/purestorage/jobs/8394951) - Bengaluru - exp not stated
+
+---
+
 ## 17 Nov 2026, 04:37 PM IST - 3 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (3)
