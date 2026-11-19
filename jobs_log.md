@@ -2,6 +2,15 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 20 Nov 2026, 03:57 AM IST - 2 new job(s)
+
+### Pune (2)
+
+- **Mastercard**: [Senior Software Engineer (Java Backend Developer with experience in designing, developing, coding)](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Senior-Software-Engineer_R-211837) - Pune - 3-5 yrs
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000131050) - Pune - exp not stated
+
+---
+
 ## 19 Nov 2026, 04:16 PM IST - 2 new job(s)
 
 ### Pune (2)
