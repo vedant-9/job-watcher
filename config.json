@@ -463,6 +463,20 @@
       "name": "Entrata",
       "ats": "lever",
       "slug": "entrata"
+    },
+    {
+      "name": "Atlassian",
+      "ats": "atlassian"
+    },
+    {
+      "name": "Apple",
+      "ats": "apple",
+      "searches": [
+        "software engineer",
+        "machine learning engineer",
+        "backend engineer"
+      ],
+      "max_pages": 5
     }
   ],
   "include_remote": true,
