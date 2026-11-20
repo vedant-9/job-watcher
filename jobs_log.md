@@ -2,6 +2,21 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 21 Nov 2026, 03:30 AM IST - 8 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (8)
+
+- **Apple**: [Applied AI Engineer](https://jobs.apple.com/en-in/details/200692393/applied-ai-engineer) - Bengaluru - 3+ yrs
+- **Apple**: [Senior Cellular Virtual Platform Developer](https://jobs.apple.com/en-in/details/200688686/senior-cellular-virtual-platform-developer) - Bengaluru - 4-14 yrs
+- **Apple**: [Software Engineer - Agent Development](https://jobs.apple.com/en-in/details/200690641/software-engineer-agent-development) - Hyderabad - 2+ yrs
+- **Apple**: [Software Engineer - Content Management Systems](https://jobs.apple.com/en-in/details/200684126/software-engineer-content-management-systems) - Bengaluru - 3+ yrs
+- **Apple**: [Software Engineer - Digital Asset Management](https://jobs.apple.com/en-in/details/200686075/software-engineer-digital-asset-management) - Bengaluru - 3+ yrs
+- **Apple**: [Software Engineer - Distributed Systems](https://jobs.apple.com/en-in/details/200678409/software-engineer-distributed-systems) - Hyderabad - 3-7 yrs
+- **Apple**: [Software Engineer - Java, Spring Boot and Microservices](https://jobs.apple.com/en-in/details/200677836/software-engineer-java-spring-boot-and-microservices) - Hyderabad - 2+ yrs
+- **Apple**: [Software Engineer - Java, Spring Boot and Microservices](https://jobs.apple.com/en-in/details/200677836/software-engineer-java-spring-boot-and-microservices) - Bengaluru - 2+ yrs
+
+---
+
 ## 20 Nov 2026, 03:54 PM IST - 7 new job(s)
 
 ### Pune (4)
