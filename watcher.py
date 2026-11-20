@@ -194,9 +194,92 @@ def fetch_smartrecruiters(c):
     return out
 
 
+def fetch_atlassian(c):
+    """Atlassian publishes all its listings as one public JSON feed (descriptions included)."""
+    d = http_json("https://www.atlassian.com/endpoint/careers/listings")
+    out = []
+    for j in d:
+        locs = j.get("locations") or []
+        desc = strip_html("\n".join(str(j.get(k) or "") for k in ("overview", "responsibilities", "qualifications")))
+        out.append({"id": str(j["id"]), "title": j.get("title", ""), "location": " ; ".join(locs),
+                    "url": f"https://www.atlassian.com/company/careers/details/{j['id']}", "desc": desc})
+    return out
+
+
+def http_text(url, timeout=25, tries=4):
+    """GET a web page as text, with the same retry/backoff as http_json."""
+    last = None
+    for attempt in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code not in (429, 500, 502, 503, 504):
+                raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            last = e
+        if attempt < tries - 1:
+            time.sleep(3 * (attempt + 1))
+    raise last
+
+
+def _apple_data(page):
+    """Apple's job pages embed their data as JSON.parse("...") in window.__staticRouterHydrationData."""
+    m = re.search(r'__staticRouterHydrationData\s*=\s*JSON\.parse\(("(?:[^"\\]|\\.)*")\)', page)
+    if not m:
+        return None
+    try:
+        return json.loads(json.loads(m.group(1)))
+    except ValueError:
+        return None
+
+
+def _walk(obj):
+    if isinstance(obj, dict):
+        yield obj
+        for v in obj.values():
+            yield from _walk(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _walk(v)
+
+
+def fetch_apple(c):
+    """Apple has no public job API. Read the server-rendered India search pages (20 jobs per page)."""
+    out, seen_ids = [], set()
+    for q in c.get("searches") or [c.get("search", "software engineer")]:
+        for page_no in range(1, c.get("max_pages", 5) + 1):
+            time.sleep(0.5)
+            page = http_text("https://jobs.apple.com/en-in/search?search=" + urllib.parse.quote(q)
+                             + f"&location=india-INDC&page={page_no}")
+            batch = []
+            data = _apple_data(page)
+            if data:
+                for d in _walk(data):
+                    if "positionId" in d and "postingTitle" in d:
+                        names = [(l.get("name") or l.get("city") or "") for l in (d.get("locations") or []) if isinstance(l, dict)]
+                        batch.append({"id": str(d["positionId"]), "title": d["postingTitle"],
+                                      "location": " ; ".join(f"{n}, India" for n in names if n) or "India",
+                                      "url": f"https://jobs.apple.com/en-in/details/{d['positionId']}/{d.get('transformedPostingTitle', '')}"})
+            if not batch:   # fallback: read the job links straight from the page
+                for m in re.finditer(r'href="/en-in/details/(\d+(?:-\d+)?)/([^"?/]+)', page):
+                    batch.append({"id": m.group(1), "title": m.group(2).replace("-", " ").title(),
+                                  "location": "India",
+                                  "url": f"https://jobs.apple.com/en-in/details/{m.group(1)}/{m.group(2)}"})
+            new = [j for j in batch if j["id"] not in seen_ids]
+            if not new:
+                break
+            for j in new:
+                seen_ids.add(j["id"])
+                out.append(j)
+    return out
+
+
 FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever,
             "ashby": fetch_ashby, "workday": fetch_workday, "eightfold": fetch_eightfold,
-            "smartrecruiters": fetch_smartrecruiters}
+            "smartrecruiters": fetch_smartrecruiters, "atlassian": fetch_atlassian, "apple": fetch_apple}
 
 
 # ---------- Detail fetch (only for NEW, title/location-matched jobs) ----------
@@ -205,6 +288,14 @@ def fetch_detail(c, job):
     if c["ats"] == "greenhouse":
         d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs/{job['id']}")
         return strip_html(d.get("content", "")), None
+    if c["ats"] == "apple":
+        parts = []
+        data = _apple_data(http_text(job["url"]))
+        for d in _walk(data or {}):
+            for k in ("jobSummary", "description", "minimumQualifications"):
+                if isinstance(d.get(k), str):
+                    parts.append(d[k])
+        return strip_html("\n".join(parts)), None
     if c["ats"] == "smartrecruiters":
         d = http_json(f"https://api.smartrecruiters.com/v1/companies/{c['slug']}/postings/{job['id']}")
         secs = (d.get("jobAd") or {}).get("sections") or {}
@@ -373,6 +464,9 @@ def send_email(subject, text):
 
 
 def notify(text, subject="Job watcher"):
+    """Send via Telegram/email. Returns True if delivered (or no channel is configured, stdout only)."""
+    configured = bool((os.getenv("TELEGRAM_BOT_TOKEN") and os.getenv("TELEGRAM_CHAT_ID"))
+                      or (os.getenv("SMTP_HOST") and os.getenv("EMAIL_TO")))
     sent = False
     try:
         sent = send_telegram(text) or sent
@@ -384,6 +478,7 @@ def notify(text, subject="Job watcher"):
         print(f"[warn] email failed: {e}", file=sys.stderr)
     if not sent:
         print(text)
+    return sent or not configured
 
 
 # ---------- Link log (jobs_log.md) ----------
@@ -554,12 +649,16 @@ def main():
         footer = ("\n\nSources that failed (fix the board name in config.json or "
                   "disable with \"enabled\": false):\n" + "\n".join(f"- {n}: {str(e)[:90]}" for n, e in errors))
     if keep:
-        write_log(keep, cfg)
         to_send = keep
         if first_run and len(keep) > MAX_FIRST_RUN:
             to_send = sorted(keep, key=lambda j: (j["loc_rank"], {"fit": 0, "unknown": 1}.get(j["exp_label"], 2)))[:MAX_FIRST_RUN]
             print(f"[info] first run: sent {MAX_FIRST_RUN} of {len(keep)}; rest marked seen")
-        notify(format_message(to_send, cfg) + (footer if first_run else ""), f"{len(to_send)} new job openings")
+        delivered = notify(format_message(to_send, cfg) + (footer if first_run else ""), f"{len(to_send)} new job openings")
+        if not delivered:
+            print("[error] notification FAILED. Jobs are NOT marked as seen, so the next run retries.", file=sys.stderr)
+            write_status(errors, len(keep))
+            sys.exit(1)
+        write_log(keep, cfg)
     elif cfg.get("heartbeat", True):
         notify(f"Job watcher ran OK: {len(STATS)} sources read, no new matching jobs." + footer, "Job watcher: no new jobs")
     else:
