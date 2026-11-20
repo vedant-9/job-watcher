@@ -2,6 +2,23 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 20 Nov 2026, 03:54 PM IST - 7 new job(s)
+
+### Pune (4)
+
+- **Entrata**: [Software Engineer (AI Document Processing)](https://jobs.lever.co/entrata/44eecb2a-0dcc-4023-8c98-b976e9e92dcb) - Pune - 4+ yrs
+- **Barclays**: [Avaloq Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Avaloq-Developer_JR-0000112102) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000130945) - Pune - exp not stated
+- **Mastercard**: [Software Engineer II](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer-II_R-208485) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (3)
+
+- **Okta**: [Senior Software Engineer - Advanced Threat Protection](https://www.okta.com/company/careers/opportunity/8242443?gh_jid=8242443) - Bengaluru - 4+ yrs
+- **Pure Storage**: [Member of Technical Staff, Backend (Product Security) ](https://job-boards.greenhouse.io/purestorage/jobs/8273641) - Bengaluru - exp not stated
+- **Pure Storage**: [Member of Technical staff, Backend (Product Security)](https://job-boards.greenhouse.io/purestorage/jobs/8382538) - Bengaluru - exp not stated
+
+---
+
 ## 20 Nov 2026, 03:57 AM IST - 2 new job(s)
 
 ### Pune (2)
