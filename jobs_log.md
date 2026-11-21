@@ -2,6 +2,22 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 21 Nov 2026, 11:30 AM IST - 6 new job(s)
+
+### Pune (4)
+
+- **DeepIntent**: [Senior Software Engineer](https://job-boards.greenhouse.io/deepintent/jobs/6240416004) - Pune - 3.5+ yrs
+- **NielsenIQ**: [Backend Engineer with Python, PHP along with web scraping](https://jobs.smartrecruiters.com/NielsenIQ/744000162389549) - Pune - 3+ yrs
+- **NielsenIQ**: [AI Engineer](https://jobs.smartrecruiters.com/NielsenIQ/744000162724355) - Pune - exp not stated
+- **NielsenIQ**: [Software Engineer (python,Django,Pandas/ Polars)](https://jobs.smartrecruiters.com/NielsenIQ/744000157850657) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **ServiceNow**: [Senior Software Engineer, DevOps - Moveworks (DevSecOps)](https://jobs.smartrecruiters.com/ServiceNow/744000152399499) - Bengaluru - 3-5 yrs
+- **ServiceNow**: [Software Engineer](https://jobs.smartrecruiters.com/ServiceNow/744000162697254) - Hyderabad - 2+ yrs
+
+---
+
 ## 21 Nov 2026, 03:30 AM IST - 8 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (8)
