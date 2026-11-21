@@ -477,6 +477,31 @@
         "backend engineer"
       ],
       "max_pages": 5
+    },
+    {
+      "name": "DigitalOcean",
+      "ats": "greenhouse",
+      "slug": "digitalocean98"
+    },
+    {
+      "name": "PhonePe",
+      "ats": "greenhouse",
+      "slug": "phonepe"
+    },
+    {
+      "name": "ServiceNow",
+      "ats": "smartrecruiters",
+      "slug": "ServiceNow"
+    },
+    {
+      "name": "NielsenIQ",
+      "ats": "smartrecruiters",
+      "slug": "NielsenIQ"
+    },
+    {
+      "name": "DeepIntent",
+      "ats": "greenhouse",
+      "slug": "deepintent"
     }
   ],
   "include_remote": true,
