@@ -277,8 +277,8 @@ def main():
 
     footer = ""
     if errors:
-        footer = ("\n\nSources that failed (fix the board name in config.json or "
-                  "disable with \"enabled\": false):\n" + "\n".join(f"- {n}: {str(e)[:160]}" for n, e in errors))
+        footer = (f"\n\n{len(errors)} source(s) failed: " + ", ".join(n for n, _ in errors)
+                  + ". Details: status.md in the repo.")
     if keep:
         to_send = keep
         if first_run and len(keep) > MAX_FIRST_RUN:
