@@ -29,376 +29,37 @@ from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
 
+from filters import (MULTI_LOC, classify_location, experience_verdict, parse_experience,  # noqa: F401
+                     slug_text, title_ok)
+from notifier import chunk, format_message, notify  # noqa: F401
+from sources import FETCHERS, IMPORT_ERRORS, fetch_detail
+
 HERE = Path(__file__).parent
 CONFIG_PATH = HERE / "config.json"
 STATE_PATH = HERE / "seen.json"
 LOG_PATH = HERE / "jobs_log.md"
 STATUS_PATH = HERE / "status.md"
 LOG_HEADER = "# Job openings log\n\nNewest run first. Each section lists the NEW openings found in that run.\n\n"
-UA = "Mozilla/5.0 (job-watcher personal script)"
 MAX_FIRST_RUN = 100
-MULTI_LOC = re.compile(r"\b\d+\s+locations?\b", re.I)
 STATS = []
 
 
 # ---------- HTTP / text helpers ----------
-def http_json(url, data=None, timeout=25, tries=4):
-    """GET/POST JSON. Retries with backoff on empty/non-JSON replies, 429 and 5xx (Workday throttles bursts)."""
-    headers = {"User-Agent": UA, "Accept": "application/json"}
-    body = None
-    if data is not None:
-        body = json.dumps(data).encode()
-        headers["Content-Type"] = "application/json"
-    last = None
-    for attempt in range(tries):
-        try:
-            req = urllib.request.Request(url, data=body, headers=headers)
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                return json.loads(r.read().decode("utf-8", "replace"), strict=False)
-        except urllib.error.HTTPError as e:
-            last = e
-            if e.code not in (429, 500, 502, 503, 504):
-                raise
-        except (urllib.error.URLError, TimeoutError, ValueError) as e:   # ValueError covers bad JSON
-            last = e
-        if attempt < tries - 1:
-            time.sleep(3 * (attempt + 1))
-    raise last
-
-
-def strip_html(s):
-    s = html.unescape(s or "")
-    s = re.sub(r"<(br|/p|/li|/div|/h\d|/ul)\s*/?>", "\n", s, flags=re.I)
-    s = re.sub(r"<[^>]+>", " ", s)
-    s = html.unescape(s)
-    return re.sub(r"[ \t]+", " ", s)
 
 
 # ---------- Fetchers: list endpoints -> {id,title,location,url[,desc]} ----------
-def _gh_host(c):
-    return "boards-api.eu.greenhouse.io" if c.get("eu") else "boards-api.greenhouse.io"
-
-
-def fetch_greenhouse(c):
-    d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs")
-    return [{"id": str(j["id"]), "title": j.get("title", ""),
-             "location": (j.get("location") or {}).get("name", ""),
-             "url": j.get("absolute_url", "")} for j in d.get("jobs", [])]
-
-
-def fetch_lever(c):
-    d = http_json(f"https://api.lever.co/v0/postings/{c['slug']}?mode=json")
-    out = []
-    for j in d:
-        parts = [j.get("descriptionPlain", ""), j.get("additionalPlain", "")]
-        for lst in j.get("lists", []) or []:
-            parts.append(lst.get("text", ""))
-            parts.append(strip_html(lst.get("content", "")))
-        out.append({"id": j["id"], "title": j.get("text", ""),
-                    "location": " ; ".join(x for x in [(j.get("categories") or {}).get("location", "") or ""] + list((j.get("categories") or {}).get("allLocations", []) or []) if x),
-                    "url": j.get("hostedUrl", ""), "desc": "\n".join(parts)})
-    return out
-
-
-def fetch_ashby(c):
-    d = http_json(f"https://api.ashbyhq.com/posting-api/job-board/{c['slug']}")
-    out = []
-    for j in d.get("jobs", []):
-        locs = [j.get("location", "") or ""]
-        locs += [(s.get("location") if isinstance(s, dict) else str(s)) or ""
-                 for s in j.get("secondaryLocations", []) or []]
-        desc = j.get("descriptionPlain") or strip_html(j.get("descriptionHtml", ""))
-        out.append({"id": j["id"], "title": j.get("title", ""),
-                    "location": " ; ".join(x for x in locs if x),
-                    "url": j.get("jobUrl", ""), "desc": desc})
-    return out
-
-
-WD_CITIES = ["Pune", "Hyderabad", "Bengaluru", "Mumbai"]
-
-
-def fetch_workday(c):
-    """Workday search returns results by relevance and we only page through the first N, so big
-    companies hide India roles. We therefore also search '<query> <city>' for each target city."""
-    host, tenant, site = c["host"], c["tenant"], c["site"]
-    api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
-    base = c.get("search", "software engineer")
-    searches = c.get("searches") or [base] + [f"{base} {city}" for city in WD_CITIES]
-    out, seen_ids, limit = [], set(), 20
-    for q in searches:
-        offset = 0
-        while offset < c.get("max_results", 80):
-            time.sleep(0.4)   # be gentle: Workday throttles bursts
-            d = http_json(api, {"appliedFacets": {}, "limit": limit, "offset": offset, "searchText": q})
-            posts = d.get("jobPostings", [])
-            if not posts:
-                break
-            for j in posts:
-                path = j.get("externalPath", "")
-                if path in seen_ids:
-                    continue
-                seen_ids.add(path)
-                out.append({"id": path, "title": j.get("title", ""),
-                            "location": j.get("locationsText", "") or "",
-                            "url": f"https://{host}/en-US/{site}{path}"})
-            offset += limit
-            if len(posts) < limit:
-                break
-    return out
-
-
-def fetch_eightfold(c):
-    """Eightfold career sites (e.g. Amdocs): public /api/apply/v2/jobs endpoint."""
-    host = c.get("host", "app.eightfold.ai")
-    q = urllib.parse.quote(c.get("search", "software engineer"))
-    loc = urllib.parse.quote(c.get("location", "India"))
-    out, start, step = [], 0, 25
-    while start < c.get("max_results", 100):
-        d = http_json(f"https://{host}/api/apply/v2/jobs?domain={c['domain']}&start={start}&num={step}&query={q}&location={loc}")
-        pos = d.get("positions", [])
-        if not pos:
-            break
-        for j in pos:
-            locs = j.get("locations") or [j.get("location", "")]
-            job = {"id": str(j.get("id")), "title": j.get("name", ""),
-                   "location": " ; ".join(x for x in locs if x),
-                   "url": j.get("canonicalPositionUrl") or f"https://{host}/careers/job/{j.get('id')}?domain={c['domain']}"}
-            if j.get("job_description"):
-                job["desc"] = strip_html(j["job_description"])
-            out.append(job)
-        start += step
-        if len(pos) < step:
-            break
-    return out
-
-
-def fetch_smartrecruiters(c):
-    """SmartRecruiters public posting API (e.g. Arista): /v1/companies/<slug>/postings."""
-    out, off = [], 0
-    while off < c.get("max_results", 300):
-        d = http_json(f"https://api.smartrecruiters.com/v1/companies/{c['slug']}/postings?limit=100&offset={off}&country={c.get('country', 'in')}")
-        items = d.get("content", [])
-        if not items:
-            break
-        for j in items:
-            loc = j.get("location") or {}
-            country = "India" if str(loc.get("country", "")).lower() == "in" else loc.get("country", "")
-            text = " ".join(x for x in [loc.get("city"), loc.get("region"), country] if x)
-            if loc.get("remote"):
-                text += " Remote"
-            out.append({"id": str(j["id"]), "title": j.get("name", ""), "location": text,
-                        "url": f"https://jobs.smartrecruiters.com/{c['slug']}/{j['id']}"})
-        off += 100
-        if len(items) < 100:
-            break
-    return out
-
-
-def fetch_atlassian(c):
-    """Atlassian publishes all its listings as one public JSON feed (descriptions included)."""
-    d = http_json("https://www.atlassian.com/endpoint/careers/listings")
-    out = []
-    for j in d:
-        locs = j.get("locations") or []
-        desc = strip_html("\n".join(str(j.get(k) or "") for k in ("overview", "responsibilities", "qualifications")))
-        out.append({"id": str(j["id"]), "title": j.get("title", ""), "location": " ; ".join(locs),
-                    "url": f"https://www.atlassian.com/company/careers/details/{j['id']}", "desc": desc})
-    return out
-
-
-def http_text(url, timeout=25, tries=4):
-    """GET a web page as text, with the same retry/backoff as http_json."""
-    last = None
-    for attempt in range(tries):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                return r.read().decode("utf-8", "replace")
-        except urllib.error.HTTPError as e:
-            last = e
-            if e.code not in (429, 500, 502, 503, 504):
-                raise
-        except (urllib.error.URLError, TimeoutError) as e:
-            last = e
-        if attempt < tries - 1:
-            time.sleep(3 * (attempt + 1))
-    raise last
-
-
-def _apple_data(page):
-    """Apple's job pages embed their data as JSON.parse("...") in window.__staticRouterHydrationData."""
-    m = re.search(r'__staticRouterHydrationData\s*=\s*JSON\.parse\(("(?:[^"\\]|\\.)*")\)', page)
-    if not m:
-        return None
-    try:
-        return json.loads(json.loads(m.group(1)))
-    except ValueError:
-        return None
-
-
-def _walk(obj):
-    if isinstance(obj, dict):
-        yield obj
-        for v in obj.values():
-            yield from _walk(v)
-    elif isinstance(obj, list):
-        for v in obj:
-            yield from _walk(v)
-
-
-def fetch_apple(c):
-    """Apple has no public job API. Read the server-rendered India search pages (20 jobs per page)."""
-    out, seen_ids = [], set()
-    for q in c.get("searches") or [c.get("search", "software engineer")]:
-        for page_no in range(1, c.get("max_pages", 5) + 1):
-            time.sleep(0.5)
-            page = http_text("https://jobs.apple.com/en-in/search?search=" + urllib.parse.quote(q)
-                             + f"&location=india-INDC&page={page_no}")
-            batch = []
-            data = _apple_data(page)
-            if data:
-                for d in _walk(data):
-                    if "positionId" in d and "postingTitle" in d:
-                        names = [(l.get("name") or l.get("city") or "") for l in (d.get("locations") or []) if isinstance(l, dict)]
-                        batch.append({"id": str(d["positionId"]), "title": d["postingTitle"],
-                                      "location": " ; ".join(f"{n}, India" for n in names if n) or "India",
-                                      "url": f"https://jobs.apple.com/en-in/details/{d['positionId']}/{d.get('transformedPostingTitle', '')}"})
-            if not batch:   # fallback: read the job links straight from the page
-                for m in re.finditer(r'href="/en-in/details/(\d+(?:-\d+)?)/([^"?/]+)', page):
-                    batch.append({"id": m.group(1), "title": m.group(2).replace("-", " ").title(),
-                                  "location": "India",
-                                  "url": f"https://jobs.apple.com/en-in/details/{m.group(1)}/{m.group(2)}"})
-            new = [j for j in batch if j["id"] not in seen_ids]
-            if not new:
-                break
-            for j in new:
-                seen_ids.add(j["id"])
-                out.append(j)
-    return out
-
-
-FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever,
-            "ashby": fetch_ashby, "workday": fetch_workday, "eightfold": fetch_eightfold,
-            "smartrecruiters": fetch_smartrecruiters, "atlassian": fetch_atlassian, "apple": fetch_apple}
 
 
 # ---------- Detail fetch (only for NEW, title/location-matched jobs) ----------
-def fetch_detail(c, job):
-    """Return (description_text, location_text_or_None)."""
-    if c["ats"] == "greenhouse":
-        d = http_json(f"https://{_gh_host(c)}/v1/boards/{c['slug']}/jobs/{job['id']}")
-        return strip_html(d.get("content", "")), None
-    if c["ats"] == "apple":
-        parts = []
-        data = _apple_data(http_text(job["url"]))
-        for d in _walk(data or {}):
-            for k in ("jobSummary", "description", "minimumQualifications"):
-                if isinstance(d.get(k), str):
-                    parts.append(d[k])
-        return strip_html("\n".join(parts)), None
-    if c["ats"] == "smartrecruiters":
-        d = http_json(f"https://api.smartrecruiters.com/v1/companies/{c['slug']}/postings/{job['id']}")
-        secs = (d.get("jobAd") or {}).get("sections") or {}
-        return strip_html("\n".join((secs.get(k) or {}).get("text", "") for k in
-                          ("jobDescription", "qualifications", "additionalInformation"))), None
-    if c["ats"] == "workday":
-        d = http_json(f"https://{c['host']}/wday/cxs/{c['tenant']}/{c['site']}{job['id']}")
-        info = d.get("jobPostingInfo", {})
-        locs = [info.get("location", "")] + list(info.get("additionalLocations", []) or [])
-        locs.append((info.get("country") or {}).get("descriptor", ""))
-        return strip_html(info.get("jobDescription", "")), " ; ".join(x for x in locs if x)
-    return "", None
 
 
 # ---------- Location ----------
-def classify_location(loc, cfg):
-    """Return (rank, label) or None. 0=preferred city, 1=acceptable city, 2=India generic, 3=multi."""
-    s = (loc or "").lower()
-    found, rank = [], 1
-    for city in cfg["preferred_locations"] + cfg["acceptable_locations"]:
-        if city in s:
-            name = "Bengaluru" if city in ("bangalore", "bengaluru") else city.title()
-            if name not in found:
-                found.append(name)
-            if city in cfg["preferred_locations"]:
-                rank = 0
-    if "Navi Mumbai" in found and "Mumbai" in found:
-        found.remove("Mumbai")
-    if found:
-        return rank, " / ".join(found)
-    if cfg.get("allow_generic_india", True) and re.search(r"\bindia\b", s):
-        if not any(c in s for c in cfg["other_india_cities"]):
-            return 2, ("Remote (India)" if "remote" in s else "India (city not stated)")
-    if MULTI_LOC.search(s):
-        return 3, "Multiple locations (check)"
-    if cfg.get("include_remote", True) and re.search(r"\bremote\b|\banywhere\b|\bwork from home\b", s):
-        return 4, "Remote (verify India eligibility)"
-    return None
 
 
 # ---------- Title filter ----------
-def slug_text(job_id):
-    """Workday ids are URL paths whose slug often carries the real title ('Tech-Lead--...')."""
-    sid = str(job_id or "")
-    return re.sub(r"[-_/]+", " ", sid) if sid.startswith("/") else ""
-
-
-def title_ok(title, cfg, extra=""):
-    t = title.lower()
-    return bool(re.search(cfg["include_title_regex"], t)) and not re.search(cfg["exclude_title_regex"], t + " " + extra.lower())
 
 
 # ---------- Experience ----------
-_RANGE = re.compile(r"(\d{1,2}(?:\.\d)?)\s*\+?\s*(?:-|–|—|to)\s*(\d{1,2}(?:\.\d)?)\s*\+?\s*(?:years?|yrs?)\b", re.I)
-_SINGLE = re.compile(r"(\d{1,2}(?:\.\d)?)\s*(\+|plus|or more|and above|and more)?\s*(?:years?|yrs?)\b", re.I)
-_EXP_WORD = re.compile(r"experience|exp\b|professional|hands[- ]on|working in|background", re.I)
-_SOFT = re.compile(r"prefer|bonus|nice to have|desirable|good to have|a plus|is a plus|ideal", re.I)
-_BOILER = re.compile(r"our company|our team|we have|we've|founded|since \d{4}|combined|years of history|in business", re.I)
-
-
-def parse_experience(text, relaxed=False):
-    """Return (min_years, max_years_or_None) for the dominant requirement, or None if unclear."""
-    found, spans = [], []
-    for m in _RANGE.finditer(text):
-        found.append((m, float(m.group(1)), float(m.group(2))))
-        spans.append(m.span())
-    for m in _SINGLE.finditer(text):
-        if any(a <= m.start() < b for a, b in spans):
-            continue
-        found.append((m, float(m.group(1)), None))
-    reqs = []
-    for m, lo, hi in found:
-        if lo > 20 or (hi is not None and (hi > 25 or hi < lo)):
-            continue
-        before = text[max(0, m.start() - 70):m.start()]
-        after = text[m.end():m.end() + 70]
-        if not relaxed:
-            if not _EXP_WORD.search(before + " " + after):
-                continue
-            sent_before = re.split(r"[.\n;]", before)[-1]   # same sentence only
-            sent_after = re.split(r"[.\n;]", after)[0]
-            if _SOFT.search(sent_before + " " + sent_after) or _BOILER.search(before + after):
-                continue
-        reqs.append((lo, hi))
-    if not reqs:
-        return None
-    return max(reqs, key=lambda r: r[0])  # strictest minimum
-
-
-def experience_verdict(req, cfg):
-    """Return (label, text); label in fit|stretch|unknown|too_senior|too_junior."""
-    me = cfg["my_years"]
-    if req is None:
-        return "unknown", "not stated"
-    lo, hi = req
-    txt = f"{lo:g}-{hi:g} yrs" if hi is not None else f"{lo:g}+ yrs"
-    if lo < cfg.get("min_required_years", 2) or (hi is not None and hi < me - 0.5):
-        return "too_junior", txt
-    if lo <= me + cfg.get("fit_slack", 0.5):
-        return "fit", txt
-    if lo <= me + cfg.get("stretch_years", 0):
-        return "stretch", txt
-    return "too_senior", txt
 
 
 # ---------- State ----------
@@ -411,74 +72,6 @@ def save_state(seen):
 
 
 # ---------- Notify ----------
-VERDICT_ICON = {"fit": "OK fits", "stretch": "STRETCH", "unknown": "exp not stated"}
-
-
-def format_message(jobs, cfg):
-    order = {"fit": 0, "unknown": 1, "stretch": 2}
-    jobs = sorted(jobs, key=lambda j: (j["loc_rank"], order.get(j["exp_label"], 3), j["company"]))
-    lines = [f"{len(jobs)} new job(s) (your exp: {cfg['my_years']:g} yrs):", ""]
-    for j in jobs:
-        lines.append(f"[{j['loc_label']}] {j['company']}: {j['title']}")
-        lines.append(f"  Exp: {j['exp_text']} -> {VERDICT_ICON.get(j['exp_label'], j['exp_label'])}")
-        lines.append(f"  {j['url']}")
-        lines.append("")
-    return "\n".join(lines)
-
-
-def chunk(text, size=3800):
-    parts, cur = [], ""
-    for line in text.split("\n"):
-        if len(cur) + len(line) + 1 > size:
-            parts.append(cur)
-            cur = ""
-        cur += line + "\n"
-    if cur.strip():
-        parts.append(cur)
-    return parts
-
-
-def send_telegram(text):
-    tok, chat = os.getenv("TELEGRAM_BOT_TOKEN"), os.getenv("TELEGRAM_CHAT_ID")
-    if not (tok and chat):
-        return False
-    for part in chunk(text):
-        http_json(f"https://api.telegram.org/bot{tok}/sendMessage",
-                  {"chat_id": chat, "text": part, "disable_web_page_preview": True})
-    return True
-
-
-def send_email(subject, text):
-    host, to = os.getenv("SMTP_HOST"), os.getenv("EMAIL_TO")
-    user, pw = os.getenv("SMTP_USER"), os.getenv("SMTP_PASS")
-    if not (host and to and user and pw):
-        return False
-    msg = EmailMessage()
-    msg["Subject"], msg["From"], msg["To"] = subject, user, to
-    msg.set_content(text)
-    with smtplib.SMTP(host, int(os.getenv("SMTP_PORT") or "587")) as s:
-        s.starttls()
-        s.login(user, pw)
-        s.send_message(msg)
-    return True
-
-
-def notify(text, subject="Job watcher"):
-    """Send via Telegram/email. Returns True if delivered (or no channel is configured, stdout only)."""
-    configured = bool((os.getenv("TELEGRAM_BOT_TOKEN") and os.getenv("TELEGRAM_CHAT_ID"))
-                      or (os.getenv("SMTP_HOST") and os.getenv("EMAIL_TO")))
-    sent = False
-    try:
-        sent = send_telegram(text) or sent
-    except Exception as e:
-        print(f"[warn] telegram failed: {e}", file=sys.stderr)
-    try:
-        sent = send_email(subject, text) or sent
-    except Exception as e:
-        print(f"[warn] email failed: {e}", file=sys.stderr)
-    if not sent:
-        print(text)
-    return sent or not configured
 
 
 # ---------- Link log (jobs_log.md) ----------
@@ -529,7 +122,7 @@ def collect(cfg, verbose=True):
             continue
         fn = FETCHERS.get(c["ats"])
         if not fn:
-            errors.append((c["name"], f"unknown ats {c['ats']}"))
+            errors.append((c["name"], f"source module '{c['ats']}' unavailable: {IMPORT_ERRORS.get(c['ats'], 'unknown type')}"))
             continue
         try:
             jobs = fn(c)

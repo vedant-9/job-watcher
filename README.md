@@ -34,7 +34,11 @@ alerts and referrals.
 
 ## Files
 
-- `watcher.py`: the bot
+- `watcher.py`: the main flow (config, state, log, status)
+- `sources/`: one small file per kind of career site (`greenhouse.py`, `workday.py`, `apple.py`, ...).
+  If one site type breaks, fix or replace only that file; the others keep working
+- `filters.py`: location, title and experience rules
+- `notifier.py`: Telegram / email sending
 - `config.json`: your settings and the company list
 - `.github/workflows/main.yml`: the schedule (runs on GitHub, free)
 - `jobs_log.md`, `seen.json`, `status.md`: created by the bot (do not edit `seen.json`)
@@ -69,6 +73,12 @@ alerts and referrals.
   - `<tenant>.wdN.myworkdayjobs.com/<site>`: `{"name": "X", "ats": "workday", "host": "<tenant>.wdN.myworkdayjobs.com", "tenant": "<tenant>", "site": "<site>", "search": "software engineer"}`
   - `careers.smartrecruiters.com/<slug>`: `{"name": "X", "ats": "smartrecruiters", "slug": "<slug>"}`
 - Disable a company with `"enabled": false`.
+
+## Adding a new kind of site
+
+Create `sources/<name>.py` with `fetch(c)` (returns a list of `{id, title, location, url}`) and optionally
+`detail(c, job)`, then add `<name>` to `NAMES` in `sources/__init__.py`. A module that fails to load only
+marks its own companies as failing.
 
 ## If a source fails
 
