@@ -486,7 +486,9 @@
     {
       "name": "PhonePe",
       "ats": "greenhouse",
-      "slug": "phonepe"
+      "slug": "phonepe",
+      "enabled": false,
+      "note": "Greenhouse API returns 404 (board not public); use PhonePe's own alerts"
     },
     {
       "name": "ServiceNow",

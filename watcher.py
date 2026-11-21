@@ -42,6 +42,7 @@ STATUS_PATH = HERE / "status.md"
 LOG_HEADER = "# Job openings log\n\nNewest run first. Each section lists the NEW openings found in that run.\n\n"
 MAX_FIRST_RUN = 100
 STATS = []
+DETAILS = []   # one row per source for status.md: (name, ats, ok, listed, matched, seconds, note)
 
 
 # ---------- HTTP / text helpers ----------
@@ -104,38 +105,75 @@ def write_log(jobs, cfg, label=None):
 
 
 def write_status(errors, n_new):
-    """Overwrite status.md every run, so there is always proof the bot ran (and it keeps the repo active)."""
+    """Overwrite status.md every run: proof the bot ran, plus per-source details to investigate problems."""
     now = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y, %I:%M %p IST")
     lines = ["# Watcher status", "", f"Last run: {now}",
              f"Sources read OK: {len(STATS)}", f"Sources failing: {len(errors)}",
              f"New matching jobs this run: {n_new}", ""]
     if errors:
-        lines += ["Failing sources:"] + [f"- {n}: {str(e)[:100]}" for n, e in errors] + [""]
+        lines += ["## Failing sources", ""] + [f"- **{n}**: {str(e)[:400]}" for n, e in errors] + [""]
+    if DETAILS:
+        lines += ["## All sources (this run)", "", "| Company | Type | Result | Listed | Match | Secs |", "|---|---|---|---|---|---|"]
+        for name, ats, ok, listed, matched, secs, _ in sorted(DETAILS, key=lambda d: (d[2], d[0].lower())):
+            lines.append(f"| {name} | {ats} | {'OK' if ok else 'FAIL'} | {listed if ok else '-'} | {matched if ok else '-'} | {secs:.1f} |")
+        lines.append("")
     STATUS_PATH.write_text("\n".join(lines))
 
 
 # ---------- Pipeline ----------
+def _read_source(c, cfg):
+    """Read one company. Returns (jobs, None) or (None, error_text)."""
+    fn = FETCHERS.get(c["ats"])
+    if not fn:
+        return None, f"source module '{c['ats']}' unavailable: {IMPORT_ERRORS.get(c['ats'], 'unknown type')}"
+    try:
+        return fn(c), None
+    except Exception as e:
+        return None, f"{type(e).__name__}: {e}"
+
+
 def collect(cfg, verbose=True):
-    results, errors = [], []
-    for c in cfg["companies"]:
-        if c.get("enabled", True) is False:
+    results, errors, secs = [], {}, {}
+    todo = [c for c in cfg["companies"] if c.get("enabled", True) is not False]
+    raw = {}
+    for c in todo:
+        t0 = time.time()
+        jobs, err = _read_source(c, cfg)
+        secs[c["name"]] = time.time() - t0
+        if err:
+            errors[c["name"]] = err
+        else:
+            raw[c["name"]] = jobs
+    if errors:   # second pass: give throttled sources a cooldown and one more go
+        print(f"[retry] {len(errors)} source(s) failed; retrying once after a short pause: {', '.join(errors)}")
+        time.sleep(25)
+        for c in todo:
+            if c["name"] not in errors or re.match(r"HTTPError: HTTP Error 40[0-8]", errors[c["name"]]):
+                continue   # permanent errors (404, 403, ...) will not change on a second try
+            t0 = time.time()
+            jobs, err = _read_source(c, cfg)
+            secs[c["name"]] += time.time() - t0
+            if err:
+                errors[c["name"]] = err + " (failed on retry too)"
+            else:
+                del errors[c["name"]]
+                raw[c["name"]] = jobs
+                print(f"[retry] {c['name']}: recovered on second pass")
+    for c in todo:
+        name = c["name"]
+        if name in errors:
+            DETAILS.append((name, c["ats"], False, 0, 0, secs[name], errors[name]))
             continue
-        fn = FETCHERS.get(c["ats"])
-        if not fn:
-            errors.append((c["name"], f"source module '{c['ats']}' unavailable: {IMPORT_ERRORS.get(c['ats'], 'unknown type')}"))
-            continue
-        try:
-            jobs = fn(c)
-        except Exception as e:
-            errors.append((c["name"], str(e)))
-            continue
+        jobs = raw[name]
         matched = [j for j in jobs if title_ok(j["title"], cfg, slug_text(j["id"])) and classify_location(j["location"], cfg)]
-        STATS.append((c["name"], len(jobs), len(matched)))
+        STATS.append((name, len(jobs), len(matched)))
+        DETAILS.append((name, c["ats"], True, len(jobs), len(matched), secs[name], ""))
         if verbose:
-            print(f"[ok] {c['name']}: {len(jobs)} total, {len(matched)} title+location match")
+            print(f"[ok] {name}: {len(jobs)} total, {len(matched)} title+location match ({secs[name]:.1f}s)")
         for j in matched:
-            j.update(company=c["name"], key=f"{c['name']}|{j['id']}", cfg=c)
+            j.update(company=name, key=f"{name}|{j['id']}", cfg=c)
             results.append(j)
+    errors = list(errors.items())
     for name, err in errors:
         print(f"[error] {name}: {err}", file=sys.stderr)
     return results, errors
@@ -240,7 +278,7 @@ def main():
     footer = ""
     if errors:
         footer = ("\n\nSources that failed (fix the board name in config.json or "
-                  "disable with \"enabled\": false):\n" + "\n".join(f"- {n}: {str(e)[:90]}" for n, e in errors))
+                  "disable with \"enabled\": false):\n" + "\n".join(f"- {n}: {str(e)[:160]}" for n, e in errors))
     if keep:
         to_send = keep
         if first_run and len(keep) > MAX_FIRST_RUN:
