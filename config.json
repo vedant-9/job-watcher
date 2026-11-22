@@ -152,7 +152,9 @@
       "host": "qualcomm.wd12.myworkdayjobs.com",
       "tenant": "qualcomm",
       "site": "External",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false,
+      "note": "Workday board returns 0 postings; no readable feed found. Use Qualcomm's own alerts"
     },
     {
       "name": "Intel",
