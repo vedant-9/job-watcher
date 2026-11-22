@@ -34,6 +34,10 @@ def fetch(c):
             offset += limit
             if len(posts) < limit:
                 break
+    if not out:
+        # A real big-company board is never empty; this usually means a wrong site name or search text.
+        raise RuntimeError(f"Workday answered but returned 0 postings for all {len(searches)} searches "
+                           f"(site '{site}' on {host}); check the site name in the career-page URL")
     return out
 
 
