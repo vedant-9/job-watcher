@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 23 Nov 2026, 02:21 AM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Autodesk**: [Software Engineer (Backend Focused)](https://autodesk.wd1.myworkdayjobs.com/en-US/Ext/job/Bengaluru-IND/Software-Engineer--Backend-Focused-_26WD102324-2) - Bengaluru - 2-4 yrs
+
+---
+
 ## 21 Nov 2026, 11:30 AM IST - 6 new job(s)
 
 ### Pune (4)
