@@ -2,6 +2,19 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 23 Nov 2026, 04:39 PM IST - 3 new job(s)
+
+### Pune (1)
+
+- **Barclays**: [Axiom Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Axiom-Developer_JR-0000133748) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **ServiceNow**: [Software Engineer](https://jobs.smartrecruiters.com/ServiceNow/744000163151029) - Hyderabad - 2-5 yrs
+- **ServiceNow**: [Software Engineer (Go & Kubernetes)](https://jobs.smartrecruiters.com/ServiceNow/744000163146999) - Hyderabad - exp not stated
+
+---
+
 ## 23 Nov 2026, 02:21 AM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
