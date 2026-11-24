@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 25 Nov 2026, 05:10 AM IST - 1 new job(s)
+
+### Pune (1)
+
+- **Barclays**: [Recon Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Recon-Developer_JR-0000102834) - Pune - exp not stated
+
+---
+
 ## 24 Nov 2026, 06:25 PM IST - 2 new job(s)
 
 ### Pune (2)
