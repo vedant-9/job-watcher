@@ -2,6 +2,15 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 24 Nov 2026, 06:25 PM IST - 2 new job(s)
+
+### Pune (2)
+
+- **Fiserv**: [Advisor, Software Development Engineering](https://fiserv.wd5.myworkdayjobs.com/en-US/EXT/job/Pune---Trion-Business-Park-India/Software-Development-Engineering---Advisor-I_R-10407551) - Pune - 3-14 yrs
+- **Barclays**: [Axiom Developer](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Axiom-Developer_JR-0000131420) - Pune - exp not stated
+
+---
+
 ## 24 Nov 2026, 07:23 AM IST - 3 new job(s)
 
 ### Pune (1)
