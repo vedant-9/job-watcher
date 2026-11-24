@@ -2,6 +2,19 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 24 Nov 2026, 07:23 AM IST - 3 new job(s)
+
+### Pune (1)
+
+- **NielsenIQ**: [AI Engineer](https://jobs.smartrecruiters.com/NielsenIQ/744000163233015) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (2)
+
+- **DoorDash India**: [Software Engineer, Backend (Merchant Platform)](https://job-boards.greenhouse.io/doordashindia/jobs/8411698) - Hyderabad - 3+ yrs
+- **GitLab**: [Applied AI Engineer, Enterprise AI](https://job-boards.greenhouse.io/gitlab/jobs/8940982002) - Bengaluru - exp not stated
+
+---
+
 ## 23 Nov 2026, 04:39 PM IST - 3 new job(s)
 
 ### Pune (1)
