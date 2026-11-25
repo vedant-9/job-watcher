@@ -2,6 +2,14 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 26 Nov 2026, 04:48 AM IST - 1 new job(s)
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **Pure Storage**: [Member of Technical Staff - Flash Array (Files)](https://job-boards.greenhouse.io/purestorage/jobs/8395028) - Bengaluru - 3+ yrs
+
+---
+
 ## 25 Nov 2026, 05:12 PM IST - 7 new job(s)
 
 ### Pune (6)
