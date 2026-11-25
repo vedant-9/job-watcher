@@ -2,6 +2,23 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 25 Nov 2026, 05:12 PM IST - 7 new job(s)
+
+### Pune (6)
+
+- **FIS**: [Agentic AI Engineer - 3 to 6 Years](https://fis.wd5.myworkdayjobs.com/en-US/SearchJobs/job/IND-PUNE-FL7/Agentic-AI-Engineer---3-to-6-Years_JR0311139) - Pune - 3-6 yrs
+- **NVIDIA**: [System Software Engineer](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/India-Bengaluru/System-Software-Engineer_JR2030549) - Pune / Bengaluru - 3+ yrs
+- **BP**: [AI Engineer - Equity and IM](https://bpinternational.wd3.myworkdayjobs.com/en-US/bpCareers/job/India---Pune/Solution-Analyst--Reward---IM_RQ115350) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000140971) - Pune - exp not stated
+- **Barclays**: [Software Engineer AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer-AI_JR-0000135987) - Pune - exp not stated
+- **Barclays**: [Software Engineer – AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000140966) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **HPE**: [Software Engineer II](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Bengaluru-Karntaka-India/Software-Engineer-II_1217744-2) - Bengaluru - 2-4 yrs
+
+---
+
 ## 25 Nov 2026, 05:10 AM IST - 1 new job(s)
 
 ### Pune (1)
