@@ -2,6 +2,20 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 27 Nov 2026, 04:47 AM IST - 4 new job(s)
+
+### Pune (3)
+
+- **BP**: [Software Engineer](https://bpinternational.wd3.myworkdayjobs.com/en-US/bpCareers/job/India---Pune/Software-Engineer_RQ118021) - Pune - 4+ yrs
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000130908) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000137699) - Pune - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (1)
+
+- **HPE**: [Software Engineer](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Bengaluru-Karntaka-India/Software-Engineer_1211943-2) - Bengaluru - 2+ yrs
+
+---
+
 ## 26 Nov 2026, 04:56 PM IST - 4 new job(s)
 
 ### Pune (1)
