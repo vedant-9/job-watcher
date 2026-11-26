@@ -2,6 +2,20 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 26 Nov 2026, 04:56 PM IST - 4 new job(s)
+
+### Pune (1)
+
+- **NielsenIQ**: [Software Engineer - Fullstack (Java AND React)](https://jobs.smartrecruiters.com/NielsenIQ/744000163808249) - Pune - 3-5 yrs
+
+### Hyderabad / Bengaluru / Mumbai (3)
+
+- **Apple**: [Machine Learning Engineer - Experimentation](https://jobs.apple.com/en-in/details/200696858/machine-learning-engineer-experimentation) - Hyderabad - 4+ yrs
+- **Intel**: [Cloud Software Development Engineer](https://intel.wd1.myworkdayjobs.com/en-US/External/job/India-Bangalore/Cloud-Software-Development-Engineer_JR0289578) - Bengaluru - 4+ yrs
+- **Wells Fargo**: [Senior Software Engineer (DevOps, GenAI/ Agentic)](https://wf.wd1.myworkdayjobs.com/en-US/WellsFargoJobs/job/Hyderabad-India/Senior-Software-Engineer--SSIS--PowerBI--Python--PowerApps--PowerShell-_R-566356) - Hyderabad - 4+ yrs
+
+---
+
 ## 26 Nov 2026, 04:48 AM IST - 1 new job(s)
 
 ### Hyderabad / Bengaluru / Mumbai (1)
