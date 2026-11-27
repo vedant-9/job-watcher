@@ -104,6 +104,19 @@ def write_log(jobs, cfg, label=None):
     LOG_PATH.write_text(LOG_HEADER + "\n".join(lines) + "\n---\n\n" + rest)
 
 
+def _heartbeat_due(cfg):
+    """heartbeat: true = every quiet run, false = never, "daily" = only the first run of each IST day."""
+    hb = cfg.get("heartbeat", True)
+    if hb != "daily":
+        return bool(hb)
+    try:
+        last = re.search(r"Last run: (\d{2} \w{3} \d{4})", STATUS_PATH.read_text()).group(1)
+    except Exception:
+        return True
+    today = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y")
+    return last != today
+
+
 def write_status(errors, n_new):
     """Overwrite status.md every run: proof the bot ran, plus per-source details to investigate problems."""
     now = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y, %I:%M %p IST")
@@ -290,7 +303,7 @@ def main():
             write_status(errors, len(keep))
             sys.exit(1)
         write_log(keep, cfg)
-    elif cfg.get("heartbeat", True):
+    elif _heartbeat_due(cfg):
         notify(f"Job watcher ran OK: {len(STATS)} sources read, no new matching jobs." + footer, "Job watcher: no new jobs")
     else:
         print("No new matching jobs.")
