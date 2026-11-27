@@ -2,20 +2,27 @@ name: job-watcher
 
 on:
   schedule:
-    - cron: "30 2,14 * * *"   # 08:00 and 20:00 IST (02:30 and 14:30 UTC)
+    # 4 runs a day, UTC: 02:07, 08:07, 14:07, 20:07 = about 07:37, 13:37, 19:37, 01:37 IST
+    # (an odd minute avoids GitHub's busiest start times; GitHub can still start runs late)
+    - cron: "7 2,8,14,20 * * *"
   workflow_dispatch:
     inputs:
       only:
-        description: "Optional: a company name (e.g. Walmart) to list ALL its current openings, or the word check to test every source"
+        description: "Empty = normal run. 'check' = test every source. A company name = list all its current matches."
         required: false
         default: ""
 
 permissions:
   contents: write
 
+concurrency:
+  group: job-watcher
+  cancel-in-progress: false
+
 jobs:
-  run:
+  watch:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -25,19 +32,20 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          ONLY: ${{ inputs.only }}
+          ONLY: ${{ github.event.inputs.only }}
         run: |
-          if [ "$ONLY" = "check" ]; then python watcher.py --check
-          elif [ -n "$ONLY" ]; then python watcher.py --only "$ONLY"
-          else python watcher.py; fi
-      - name: Save seen jobs and link log
+          if [ "$ONLY" = "check" ]; then
+            python watcher.py --check
+          elif [ -n "$ONLY" ]; then
+            python watcher.py --only "$ONLY"
+          else
+            python watcher.py
+          fi
+      - name: Save state
         run: |
           git config user.name "job-watcher"
           git config user.email "job-watcher@users.noreply.github.com"
           for f in seen.json jobs_log.md status.md; do [ -f "$f" ] && git add "$f"; done
-          git diff --cached --quiet || (git commit -m "update seen jobs and link log" && git push)
+          git diff --cached --quiet || git commit -m "watcher update"
+          git pull --rebase --autostash || true
+          git push
