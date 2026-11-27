@@ -487,10 +487,8 @@
     },
     {
       "name": "PhonePe",
-      "ats": "greenhouse",
-      "slug": "phonepe",
-      "enabled": false,
-      "note": "Greenhouse API returns 404 (board not public); use PhonePe's own alerts"
+      "ats": "smartrecruiters",
+      "slug": "PHONEPELIMITED"
     },
     {
       "name": "ServiceNow",
@@ -506,6 +504,171 @@
       "name": "DeepIntent",
       "ats": "greenhouse",
       "slug": "deepintent"
+    },
+    {
+      "name": "PubMatic",
+      "ats": "greenhouse",
+      "slug": "pubmatic"
+    },
+    {
+      "name": "Mindtickle",
+      "ats": "lever",
+      "slug": "mindtickle"
+    },
+    {
+      "name": "Icertis",
+      "ats": "lever",
+      "slug": "icertis"
+    },
+    {
+      "name": "Northern Trust",
+      "ats": "workday",
+      "host": "ntrs.wd1.myworkdayjobs.com",
+      "tenant": "ntrs",
+      "site": "northerntrust",
+      "search": "software engineer"
+    },
+    {
+      "name": "State Street",
+      "ats": "workday",
+      "host": "statestreet.wd1.myworkdayjobs.com",
+      "tenant": "statestreet",
+      "site": "Global",
+      "search": "software engineer"
+    },
+    {
+      "name": "Razorpay",
+      "ats": "greenhouse",
+      "slug": "razorpaysoftwareprivatelimited"
+    },
+    {
+      "name": "InMobi",
+      "ats": "greenhouse",
+      "slug": "inmobi"
+    },
+    {
+      "name": "Netskope",
+      "ats": "greenhouse",
+      "slug": "netskope"
+    },
+    {
+      "name": "Anaplan",
+      "ats": "greenhouse",
+      "slug": "anaplan"
+    },
+    {
+      "name": "Anthropic",
+      "ats": "greenhouse",
+      "slug": "anthropic"
+    },
+    {
+      "name": "Toast",
+      "ats": "greenhouse",
+      "slug": "toast"
+    },
+    {
+      "name": "Yugabyte",
+      "ats": "greenhouse",
+      "slug": "yugabyte"
+    },
+    {
+      "name": "GHX",
+      "ats": "greenhouse",
+      "slug": "globalhealthcareexchangeinc"
+    },
+    {
+      "name": "Redwood Software",
+      "ats": "greenhouse",
+      "slug": "redwoodsoftware"
+    },
+    {
+      "name": "Scopely",
+      "ats": "greenhouse",
+      "slug": "scopely"
+    },
+    {
+      "name": "Fanatics Commerce",
+      "ats": "greenhouse",
+      "slug": "fanaticscommerce"
+    },
+    {
+      "name": "Veeva",
+      "ats": "lever",
+      "slug": "veeva"
+    },
+    {
+      "name": "Extreme Networks",
+      "ats": "lever",
+      "slug": "extremenetworks"
+    },
+    {
+      "name": "LinkedIn",
+      "ats": "smartrecruiters",
+      "slug": "LinkedIn3"
+    },
+    {
+      "name": "Dell",
+      "ats": "workday",
+      "host": "dell.wd1.myworkdayjobs.com",
+      "tenant": "dell",
+      "site": "External",
+      "search": "software engineer"
+    },
+    {
+      "name": "Omnissa",
+      "ats": "workday",
+      "host": "omnissa.wd501.myworkdayjobs.com",
+      "tenant": "omnissa",
+      "site": "Omnissa_External_Career_Site",
+      "search": "software engineer"
+    },
+    {
+      "name": "Lloyds Banking Group",
+      "ats": "workday",
+      "host": "lbg.wd3.myworkdayjobs.com",
+      "tenant": "lbg",
+      "site": "Lloyds_Technology_Centre",
+      "search": "software engineer"
+    },
+    {
+      "name": "The Hartford",
+      "ats": "workday",
+      "host": "thehartford.wd5.myworkdayjobs.com",
+      "tenant": "thehartford",
+      "site": "Careers_External",
+      "search": "software engineer"
+    },
+    {
+      "name": "Vanguard",
+      "ats": "workday",
+      "host": "vanguard.wd5.myworkdayjobs.com",
+      "tenant": "vanguard",
+      "site": "vanguard_external",
+      "search": "software engineer"
+    },
+    {
+      "name": "Nationwide India",
+      "ats": "workday",
+      "host": "nationwide.wd1.myworkdayjobs.com",
+      "tenant": "nationwide",
+      "site": "Nationwide_Career_India",
+      "search": "software engineer"
+    },
+    {
+      "name": "Duck Creek",
+      "ats": "workday",
+      "host": "duckcreek.wd1.myworkdayjobs.com",
+      "tenant": "duckcreek",
+      "site": "duckcreekcareers",
+      "search": "software engineer"
+    },
+    {
+      "name": "Roche",
+      "ats": "workday",
+      "host": "roche.wd3.myworkdayjobs.com",
+      "tenant": "roche",
+      "site": "Roche-ext",
+      "search": "software engineer"
     }
   ],
   "include_remote": true,
