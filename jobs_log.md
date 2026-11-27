@@ -2,6 +2,56 @@
 
 Newest run first. Each section lists the NEW openings found in that run.
 
+## 27 Nov 2026, 09:00 PM IST - 37 new job(s)
+
+### Pune (11)
+
+- **NielsenIQ**: [Software Engineer - Fullstack (Java AND React)](https://jobs.smartrecruiters.com/NielsenIQ/744000164017287) - Pune - 3-5 yrs
+- **PhonePe**: [Software Engineer, Backend (3-5 years)](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000005941) - Pune - 3-5 yrs
+- **PubMatic**: [Senior/Software Engineer (Agentic AI)](https://pubmatic.com/job/?gh_jid=5250558008) - Pune - 2-5 yrs
+- **PubMatic**: [Senior/Software Engineer - Java (Core Platform, Commerce Media)](https://pubmatic.com/job/?gh_jid=5173030008) - Pune - 3-5 yrs
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000136055) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000136067) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000136082) - Pune - exp not stated
+- **Barclays**: [Software Engineer - AI](https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/Pune-Gera-Commerzone-SEZ/Software-Engineer---AI_JR-0000137674) - Pune - exp not stated
+- **Deutsche Bank**: [Full stack Engineer, AS](https://db.wd3.myworkdayjobs.com/en-US/DBWebsite/job/Pune---Margarpatta/GCP-Data---AI-Engineer--AS_R0435301) - Pune - exp not stated
+- **Mastercard**: [Software Engineer](https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/Pune-India/Software-Engineer_R-289525) - Pune - exp not stated
+- **Mindtickle**: [SDE-III](https://jobs.lever.co/mindtickle/2f32712f-bc84-4485-b2fb-99e167f54e21) - Pune / Bengaluru - exp not stated
+
+### Hyderabad / Bengaluru / Mumbai (22)
+
+- **InMobi**: [Machine Learning Engineer II - Backend](https://job-boards.greenhouse.io/inmobi/jobs/6898755) - Bengaluru - 2-5 yrs
+- **InMobi**: [SDE II - AI](https://job-boards.greenhouse.io/inmobi/jobs/8073988) - Bengaluru - 3-5 yrs
+- **LinkedIn**: [Senior Software Engineer, Systems Infrastructure](https://jobs.smartrecruiters.com/LinkedIn3/744000162220239) - Bengaluru - 4+ yrs
+- **LinkedIn**: [Software Engineer, Systems Infrastructure](https://jobs.smartrecruiters.com/LinkedIn3/744000163377419) - Bengaluru - 2+ yrs
+- **Lloyds Banking Group**: [Software Engineer](https://lbg.wd3.myworkdayjobs.com/en-US/Lloyds_Technology_Centre/job/Hyderabad-Knowledge-Park-Tower-2/Software-Engineer_165094) - Hyderabad - 4+ yrs
+- **Meesho**: [Senior Software Engineer - Backend (Kirana Club)](https://jobs.lever.co/meesho/1d628f96-a365-441f-967d-11e647d2f587) - Bengaluru - 4-6 yrs
+- **Meesho**: [Software Engineer II — Backend (Kirana Club)](https://jobs.lever.co/meesho/9ae5ca62-3b5f-4bc4-9986-5c475f597223) - Bengaluru - 2.5-4.5 yrs
+- **Micron**: [Sr. Systems Software Engineer](https://micron.wd1.myworkdayjobs.com/en-US/External/job/Hyderabad---Phoenix-Aquila-India/Sr-Systems-Software-Engineer_JR105187) - Hyderabad - 3+ yrs
+- **Omnissa**: [Software Engineer (Backend Engineer)](https://omnissa.wd501.myworkdayjobs.com/en-US/Omnissa_External_Career_Site/job/Bengaluru-India/Software-Engineer--Backend-Engineer-_R-101758) - Bengaluru - 2-10 yrs
+- **PhonePe**: [Software Engineer (3-5 years), Symphony](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000005239) - Bengaluru - 3-5 yrs
+- **PhonePe**: [Software Engineer (3-5)](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000006871) - Bengaluru - 3-5 yrs
+- **PhonePe**: [Software Engineer (Data Platform, 3-5 years)](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000006778) - Bengaluru - 3-5 yrs
+- **PhonePe**: [Software Engineer - React Native](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000001903) - Bengaluru - 4-7 yrs
+- **PhonePe**: [Software Engineer, Backend  (3-5 years) ](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000007003) - Bengaluru - 3-5 yrs
+- **Redwood Software**: [Software Engineer - Applied AI](https://job-boards.greenhouse.io/redwoodsoftware/jobs/4467205009) - Hyderabad - 4+ yrs
+- **Redwood Software**: [Software Engineer – AI CoE](https://job-boards.greenhouse.io/redwoodsoftware/jobs/4451141009) - Hyderabad - 4+ yrs
+- **Vanguard**: [Application Engineer III / Senior Full-Stack Software Engineer, Cloud & AI](https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Hyderabad-India/Application-Engineer-III---Senior-Full-Stack-Software-Engineer--Cloud---AI_182543) - Hyderabad - 3+ yrs
+- **Veeva**: [NetSuite Developer](https://jobs.lever.co/veeva/a89d4ff8-b50b-4e56-9b74-0823d2751c66) - Hyderabad - 3+ yrs
+- **Veeva**: [Software Engineer - Test Automation](https://jobs.lever.co/veeva/361ccc4a-7175-43d8-8e1c-bd442f77b9fe) - Hyderabad - 2+ yrs
+- **Fanatics Commerce**: [Software Engineer III (Backend)](https://job-boards.greenhouse.io/fanaticscommerce/jobs/4479543009) - Hyderabad - exp not stated
+- **PhonePe**: [Platform Engineer 2](https://jobs.smartrecruiters.com/PHONEPELIMITED/1000000000006617) - Bengaluru - exp not stated
+- **Roche**: [IT Software Engineering Expert - RDT Pharma Medicines](https://roche.wd3.myworkdayjobs.com/en-US/Roche-ext/job/Hyderabad/IT-Software-Engineering-Expert---RDT-Pharma-Medicines_202607-119586) - Hyderabad - exp not stated
+
+### India, city not stated / Remote (India) (4)
+
+- **The Hartford**: [Asociate  Software Engineer](https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/India-GCC-Puppalaguda-Village/Asociate--Software-Engineer_R2627450) - India (city not stated) - 4-6 yrs
+- **The Hartford**: [IND Senior Software Engineer - Duck Creek Policy](https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/India-GCC-Puppalaguda-Village/IND-Senior-Software-Engineer---Duck-Creek-Policy_R2627155) - India (city not stated) - 4-6 yrs
+- **The Hartford**: [Senior Software Engineer/AWS](https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/India-GCC-Puppalaguda-Village/Senior-Software-Engineer-AWS_R2627946) - India (city not stated) - 2-6 yrs
+- **The Hartford**: [Amazon Connect Developer](https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/India-GCC-Puppalaguda-Village/Amazon-Connect-Developer_R2625861) - India (city not stated) - exp not stated
+
+---
+
 ## 27 Nov 2026, 04:47 AM IST - 4 new job(s)
 
 ### Pune (3)
