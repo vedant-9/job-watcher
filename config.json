@@ -669,6 +669,22 @@
       "tenant": "roche",
       "site": "Roche-ext",
       "search": "software engineer"
+    },
+    {
+      "name": "Micron",
+      "ats": "workday",
+      "host": "micron.wd1.myworkdayjobs.com",
+      "tenant": "micron",
+      "site": "External",
+      "search": "software engineer"
+    },
+    {
+      "name": "Micron (Eightfold)",
+      "ats": "eightfold",
+      "host": "careers.micron.com",
+      "domain": "micron.com",
+      "search": "software engineer",
+      "location": "India"
     }
   ],
   "include_remote": true,
