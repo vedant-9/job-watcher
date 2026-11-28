@@ -104,6 +104,36 @@ def write_log(jobs, cfg, label=None):
     LOG_PATH.write_text(LOG_HEADER + "\n".join(lines) + "\n---\n\n" + rest)
 
 
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def _last_run_time():
+    """Time of the last committed run, read from status.md (None if unknown)."""
+    try:
+        text = STATUS_PATH.read_text()
+        raw = re.search(r"Last run: (.+)", text).group(1).replace(" IST", "").strip()
+        return datetime.strptime(raw, "%d %b %Y, %I:%M %p").replace(tzinfo=IST)
+    except Exception:
+        return None
+
+
+def _too_soon(cfg):
+    """Scheduled runs are skipped if the last run was less than min_gap_hours ago. This lets the workflow
+    fire every 2 hours (GitHub drops or delays some runs) and still gives about 4 real runs a day.
+    Manual runs and check/only runs are never skipped."""
+    gap = cfg.get("min_gap_hours", 0)
+    if not gap or os.getenv("GITHUB_EVENT_NAME") != "schedule":
+        return False
+    last = _last_run_time()
+    if not last:
+        return False
+    age = datetime.now(IST) - last
+    if age < timedelta(hours=gap):
+        print(f"[skip] last run was {age.total_seconds() / 3600:.1f}h ago (min_gap_hours={gap}); nothing to do.")
+        return True
+    return False
+
+
 def _heartbeat_due(cfg):
     """heartbeat: true = every quiet run, false = never, "daily" = only the first run of each IST day."""
     hb = cfg.get("heartbeat", True)
@@ -270,6 +300,8 @@ def main():
             notify(f"{args.only}: board read OK, but no current openings match your filters.", "Job watcher")
         return
 
+    if _too_soon(cfg):
+        return
     results, errors = collect(cfg)
     seen = load_state()
     first_run = seen is None
