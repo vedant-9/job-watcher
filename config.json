@@ -237,7 +237,9 @@
     {
       "name": "Thoughtworks",
       "ats": "greenhouse",
-      "slug": "thoughtworks"
+      "slug": "thoughtworks",
+      "enabled": false,
+      "note": "Greenhouse board returns 404 (moved or closed)"
     },
     {
       "name": "Meesho",
@@ -518,7 +520,9 @@
     {
       "name": "Icertis",
       "ats": "lever",
-      "slug": "icertis"
+      "slug": "icertis",
+      "enabled": false,
+      "note": "Lever board name returns 404; use Icertis's own job alerts"
     },
     {
       "name": "Northern Trust",
@@ -612,7 +616,9 @@
       "host": "dell.wd1.myworkdayjobs.com",
       "tenant": "dell",
       "site": "External",
-      "search": "software engineer"
+      "search": "software engineer",
+      "enabled": false,
+      "note": "Workday returns HTTP 422 for this board; use Dell's own job alerts"
     },
     {
       "name": "Omnissa",
@@ -684,9 +690,12 @@
       "host": "careers.micron.com",
       "domain": "micron.com",
       "search": "software engineer",
-      "location": "India"
+      "location": "India",
+      "enabled": false,
+      "note": "Eightfold feed blocks automated requests (403); the Micron Workday entry works"
     }
   ],
   "include_remote": true,
-  "heartbeat": true
+  "heartbeat": true,
+  "min_gap_hours": 5
 }
