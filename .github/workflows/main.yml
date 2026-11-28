@@ -2,9 +2,10 @@ name: job-watcher
 
 on:
   schedule:
-    # 4 runs a day, UTC: 02:07, 08:07, 14:07, 20:07 = about 07:37, 13:37, 19:37, 01:37 IST
-    # (an odd minute avoids GitHub's busiest start times; GitHub can still start runs late)
-    - cron: "7 2,8,14,20 * * *"
+    # Fires every 2 hours because GitHub drops or delays some scheduled runs. watcher.py skips a
+    # scheduled run if the last run was under min_gap_hours ago (config.json), so you get about 4 real runs a day.
+    # An odd minute avoids GitHub's busiest start times.
+    - cron: "7 */2 * * *"
   workflow_dispatch:
     inputs:
       only:
